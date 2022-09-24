@@ -8,7 +8,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = merge(baseConfig,{
     mode:'development',
-    entry: './examples/index.tsx',
+    entry: './src/examples/index.tsx',
     devtool: "eval-cheap-module-source-map",
     devServer: {
         host:'127.0.0.1',

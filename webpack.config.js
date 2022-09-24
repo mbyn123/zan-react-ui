@@ -5,7 +5,7 @@ const devMode = process.env.NODE_ENV !== 'production';
 
 
 module.exports = {
-    entry: './lib/index.tsx',
+    entry: './src/lib/index.tsx',
     output: {
         path: path.resolve(__dirname, 'dist/lib'),
         filename: '[name].[contenthash].js', // 打包文件名称
@@ -15,9 +15,10 @@ module.exports = {
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
         alias:{
-            styles: path.resolve(__dirname, 'styles'),
-            examples: path.resolve(__dirname, 'examples'),
-            lib: path.resolve(__dirname, 'lib'),
+            "@": path.resolve(__dirname, "src"), // 设置别名
+            "styles": path.resolve(__dirname, "src/styles"),
+            "@doc": path.resolve(__dirname,'src/examples/doc'),
+            "@lib": path.resolve(__dirname,'src/lib'),
         },
         modules: [path.resolve(__dirname, 'utils'), 'node_modules']
     },
@@ -46,6 +47,9 @@ module.exports = {
                     },
                     {
                         loader: 'sass-loader',
+                        options: {
+                            additionalData: `@import "~styles/helper.scss";`,
+                        }
                     }
                 ]
             },{
