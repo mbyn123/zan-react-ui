@@ -25,7 +25,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test:/\.(tsx|jsx)$/,
+                test:/\.(ts|tsx|jsx)$/,
                 exclude: /node-modules/,
                 use:[
                     {
