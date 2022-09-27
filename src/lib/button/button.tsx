@@ -1,32 +1,46 @@
-import React, {ButtonHTMLAttributes} from "react";
+import React, {ButtonHTMLAttributes,MouseEvent} from "react";
 import * as classNames from "classnames";
 import './style.scss'
 
-export type ButtonType = 'primary' | 'default' | 'danger' | 'link' | 'text'
+type ButtonType = 'primary' | 'default' | 'danger' | 'link' | 'text'
+type ButtonSize = 'small' | 'medium' | 'large'
 
 interface BaseButtonProps {
-    type?: ButtonType,
-    disabled?: boolean,
-    htmlType?: 'submit' | 'reset' | 'button' | undefined;
+    type?: ButtonType
+    size?: ButtonSize
+    href?: string,
+    target?: string
+    disabled?: boolean
+    htmlType?: 'submit' | 'reset' | 'button' | undefined
+    style?: React.CSSProperties
 }
 
 type ButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type'> & BaseButtonProps
 
 
 export default function Button(props: ButtonProps) {
-    const {children, className, type, disabled} = props
+    const {children, className, type, size, htmlType, disabled, href, target, style} = props
 
     const classes = classNames('zan-button', {
         [`zan-button-${type}`]: type,
-        'zan-button-disabled': disabled
+        [`zan-button-${size}`]: size,
+        [`zan-button-disabled${type === 'link'?'-link':''}`]:  disabled
     }, className)
 
-    return (
-        <button className={classes}>{children}</button>
-    )
+    const linkClick = (e:MouseEvent )=>{
+      if(disabled){
+          return e.preventDefault()
+      }
+    }
+
+    return type === 'link' ?
+        <a className={classes} href={href} target={target} style={style} onClick={linkClick}>{children}</a> :
+        <button className={classes} type={htmlType} disabled={disabled} style={style}>{children}</button>
 }
 
 Button.defaultProps = {
     type: 'default',
+    size: 'medium',
+    htmlType: 'submit',
     disabled: false
 }

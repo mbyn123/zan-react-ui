@@ -12,6 +12,7 @@ $danger: #dc3545;
   border: none;
   background-color: $color;
   color: #ffffff;
+  box-sizing: border-box;
 
   &:hover {
     background-color: $hover;
