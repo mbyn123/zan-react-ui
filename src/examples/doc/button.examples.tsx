@@ -9,7 +9,7 @@ export default function(){
                 <Button>主按钮</Button>
                 <Button type='primary'  className='my-button'>主按钮</Button>
                 <Button type="text" > 文字按钮</Button>
-                <Button type='link'  href='https://www.baidu.com' target='_blank'>链接按钮</Button>
+                <Button type='link' >链接按钮</Button>
                 <Button type='danger'>主按钮</Button>
                 <Button disabled>按钮</Button>
             </div>
