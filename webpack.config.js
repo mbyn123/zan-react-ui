@@ -14,31 +14,31 @@ module.exports = {
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
-        alias:{
+        alias: {
             "@": path.resolve(__dirname, "src"), // 设置别名
             "styles": path.resolve(__dirname, "src/styles"),
-            "@doc": path.resolve(__dirname,'src/examples/doc'),
-            "@lib": path.resolve(__dirname,'src/lib'),
+            "@doc": path.resolve(__dirname, 'src/examples/doc'),
+            "@lib": path.resolve(__dirname, 'src/lib'),
         },
         modules: [path.resolve(__dirname, 'utils'), 'node_modules']
     },
     module: {
         rules: [
             {
-                test:/\.(ts|tsx|jsx)$/,
+                test: /\.(ts|tsx|jsx)$/,
                 exclude: /node-modules/,
-                use:[
+                use: [
                     {
                         loader: "babel-loader",
-                        options: {plugins: devMode?[require.resolve('react-refresh/babel')]:[]}
+                        options: {plugins: devMode ? [require.resolve('react-refresh/babel')] : []}
                     }
                 ]
-            },{
+            }, {
                 test: /\.css$/,
                 use: [devMode ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
-            },{
+            }, {
                 test: /\.s[ac]ss$/i,
-                use:[
+                use: [
                     {
                         loader: devMode ? 'style-loader' : MiniCssExtractPlugin.loader
                     },
@@ -52,8 +52,8 @@ module.exports = {
                         }
                     }
                 ]
-            },{
-                test: /\.(svg|png|jpg|gif)$/,
+            }, {
+                test: /\.(png|jpg|gif)$/,
                 type: "asset/resource",
                 parser: {
                     dataUrlCondition: {
@@ -63,7 +63,10 @@ module.exports = {
                 generator: {
                     filename: 'static/images/[name][ext]', // 文件输出目录和命名
                 }
-            },
+            }, {
+                test: /\.svg$/,
+                loader: "svg-sprite-loader"
+            }
         ]
     },
     plugins: [

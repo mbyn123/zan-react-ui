@@ -16,6 +16,9 @@ const SlideNav = () => {
                 <li className='menu-item'>
                     <NavLink to='/button'>Button 按钮</NavLink>
                 </li>
+                <li className='menu-item'>
+                    <NavLink to='/icon'>Icon 图标</NavLink>
+                </li>
             </ul>
         </div>
     )

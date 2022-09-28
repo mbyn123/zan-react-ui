@@ -23,9 +23,7 @@
     }
   },
   "include": [ // 指定编译
-    "example.tsx",
-    "lib/**/*",
-    "examples/**/*"
+   "./src"
   ],
   "exclude": [// 忽略
     "node_modules",
