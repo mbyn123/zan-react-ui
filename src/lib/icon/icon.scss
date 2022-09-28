@@ -1,15 +1,16 @@
-
-
-
-
-.zan-icon{
+.zan-icon {
   width: 1em;
   height: 1em;
   font-size: 40px;
   fill: currentColor;
   cursor: pointer;
   user-select: none;
-  &-loading{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 .2em;
+
+  &-loading {
     @include spin(1s)
   }
 }

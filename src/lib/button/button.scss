@@ -1,15 +1,24 @@
+@mixin ButtonIconSize($size) {
+  .zan-icon {
+    font-size: $size;
+    margin-right: 4px;
+  }
+}
+
 
 .zan-button {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  vertical-align: middle;
+  justify-content: center;
+  align-items: center;
   @include ButtonSize(0, 16px, 32px, 30px, 14px);
   border-radius: 2px;
   font-family: inherit;
-  text-align: center;
-  vertical-align: middle;
   box-sizing: border-box;
   cursor: pointer;
   transition: all .3s;
+  font-size: 14px;
   margin: 10px;
 
   &-default {
@@ -24,7 +33,7 @@
     }
   }
 
-  &-link{
+  &-link {
     color: $primary;
     text-decoration: none;
     user-select: none;
@@ -66,18 +75,25 @@
     }
   }
 
-  &-disabled-link{
+  &-disabled-link {
     color: #cccccc;
     cursor: not-allowed;
   }
 
-  &-small{
+  &-small {
     @include ButtonSize(0, 8px, 24px, 22px, 12px);
+    @include ButtonIconSize(14px)
   }
-  &-medium{
+
+  &-medium {
     @include ButtonSize(0, 16px, 32px, 30px, 14px);
+    @include ButtonIconSize(16px)
   }
-  &-large{
+
+  &-large {
     @include ButtonSize(0, 24px, 40px, 38px, 16px);
+    @include ButtonIconSize(20px)
   }
+
+
 }
