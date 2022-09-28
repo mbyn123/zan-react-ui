@@ -1,4 +1,4 @@
-import React, {ButtonHTMLAttributes,MouseEvent} from "react";
+import React, {AnchorHTMLAttributes, ButtonHTMLAttributes,MouseEvent} from "react";
 import * as classNames from "classnames";
 import './style.scss'
 
@@ -15,11 +15,11 @@ interface BaseButtonProps {
     style?: React.CSSProperties
 }
 
-type ButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type'> & BaseButtonProps
+type ButtonProps = Partial<Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type'> & AnchorHTMLAttributes<HTMLAnchorElement> & BaseButtonProps>
 
 
 export default function Button(props: ButtonProps) {
-    const {children, className, type, size, htmlType, disabled, href, target, style} = props
+    const {children, className, type, size, htmlType, disabled, href, target, style,onClick,...restProps} = props
 
     const classes = classNames('zan-button', {
         [`zan-button-${type}`]: type,
@@ -27,15 +27,21 @@ export default function Button(props: ButtonProps) {
         [`zan-button-disabled${type === 'link'?'-link':''}`]:  disabled
     }, className)
 
-    const linkClick = (e:MouseEvent )=>{
-      if(disabled){
-          return e.preventDefault()
-      }
+
+    const buttonClick = (e:MouseEvent<HTMLButtonElement> )=>{
+        onClick && onClick(e)
+    }
+
+    const linkClick = (e:MouseEvent<HTMLAnchorElement>)=>{
+        if(disabled){
+            return e.preventDefault()
+        }
+        onClick && onClick(e)
     }
 
     return type === 'link' ?
-        <a className={classes} href={href} target={target} style={style} onClick={linkClick}>{children}</a> :
-        <button className={classes} type={htmlType} disabled={disabled} style={style}>{children}</button>
+        <a className={classes} href={href} target={target} style={style}  onClick={linkClick}>{children}</a> :
+        <button className={classes} type={htmlType} disabled={disabled} style={style} onClick={buttonClick} {...restProps}>{children}</button>
 }
 
 Button.defaultProps = {

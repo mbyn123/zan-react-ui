@@ -11,12 +11,12 @@ export default function(){
                 <Button type="text" > 文字按钮</Button>
                 <Button type='link' >链接按钮</Button>
                 <Button type='danger'>主按钮</Button>
-                <Button disabled>按钮</Button>
+                <Button disabled onClick={()=>alert('1111')}>按钮</Button>
             </div>
             <div>
-                <Button size='large' >大号按钮</Button>
-                <Button >正常按钮</Button>
-                <Button size='small'>小号按钮</Button>
+                <Button size='large' type='primary'>大号按钮</Button>
+                <Button type='primary'>正常按钮</Button>
+                <Button size='small' type='primary'>小号按钮</Button>
             </div>
         </div>
     )

@@ -27,7 +27,7 @@
   &-link{
     color: $primary;
     text-decoration: none;
-
+    user-select: none;
   }
 
   &-primary {
