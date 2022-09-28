@@ -1,9 +1,15 @@
+
+
+
+
 .zan-icon{
   width: 1em;
   height: 1em;
   font-size: 40px;
   fill: currentColor;
-  overflow: hidden;
   cursor: pointer;
-  //color: #d9363e;
+  user-select: none;
+  &-loading{
+    @include spin(1s)
+  }
 }

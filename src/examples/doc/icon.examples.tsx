@@ -4,11 +4,11 @@ import Icon from "@lib/icon/icon"
 export default function (){
     return (
         <div>
-            <Icon name="loading" style={{color:'red'}}/>
+            <Icon name="loading" />
             <Icon name="setting" className='my-icon'/>
-            <Icon name="query"/>
-            <Icon name="examine"/>
-            <Icon name="folder"/>
+            <Icon name="query" onClick={()=>console.log('12131231')}/>
+            <Icon name="examine" onMouseMove={()=>console.log('456456456')}/>
+            <Icon name="folder" style={{color:'red'}}/>
             <Icon name="logout"/>
         </div>
     )

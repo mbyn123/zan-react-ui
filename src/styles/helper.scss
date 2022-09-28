@@ -1,6 +1,13 @@
 $primary: #114bae;
 $danger: #dc3545;
 
+$prefix: zan;
+
+@keyframes #{$prefix}-keyframes-spin {
+  0%{transform: rotate(0)}
+  100%{transform: rotate(360deg)}
+}
+
 @mixin ButtonSize($padding-y,$padding-x,$height,$line-height,$font-size) {
   padding: $padding-y $padding-x;
   height: $height;
@@ -23,3 +30,8 @@ $danger: #dc3545;
     color: #ffffff;
   }
 }
+
+@mixin spin($duration){
+  animation: #{$prefix}-keyframes-spin $duration linear infinite;
+}
+

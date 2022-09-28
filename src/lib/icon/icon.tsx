@@ -1,18 +1,16 @@
-import React from "react";
+import React, {SVGAttributes} from "react";
 import classNames from "classnames";
 import './importAllSvg'
 import './icon.scss'
 
-interface IconProps {
+interface IconProps extends SVGAttributes<SVGElement> {
     name: string
-    className?: string
-    style?: React.CSSProperties
 }
 
 export default function Icon(props: IconProps) {
-    const {name, style, className} = props
+    const {name, className, ...restProps} = props
     return (
-        <svg className={classNames('zan-icon', className)} style={style}>
+        <svg className={classNames('zan-icon',`zan-icon-${name}`, className)} {...restProps}>
             <use xlinkHref={`#${name}`}/>
         </svg>
     )
