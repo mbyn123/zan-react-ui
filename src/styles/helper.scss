@@ -46,7 +46,15 @@ $prefix: zan;
   @include ButtonSize(0, 8px, 24px, 24px, 12px);
   border: 0;
   color: #155bd4;
-  background-color: rgba(21, 91, 212, 0.03);
+  background-color: #F8FAFE;
+
+  &:hover {
+    background-color: #F1F5FC;
+  }
+
+  &:active {
+    background-color: #EAF0FB;
+  }
 }
 
 @mixin ButtonLink(){
@@ -55,8 +63,32 @@ $prefix: zan;
   user-select: none;
 }
 
-@mixin ButtonDefault(){
-  border: 1px solid $primary;
-  color: $primary;
+@mixin ButtonOutline($color){
+  border: 1px solid $color;
+  color: $color;
   background-color: #ffffff;
+  &:hover{
+    border: 1px solid $color;
+    color: $color;
+    background-color: #ffffff;
+  }
+  &:active {
+    border: 1px solid transparent;
+    background-color: #e0e0e0;
+    color: #333333;
+  }
+}
+
+@mixin ButtonDefault(){
+  border: none;
+  color: #333333;
+  background-color: #F0F0F0;
+
+  &:hover{
+    background-color: #F7F7F7;
+  }
+
+  &:active{
+    background-color: #E8E8E8;
+  }
 }

@@ -31,15 +31,12 @@
     @include ButtonIconSize(20px)
   }
 
-  &-default {
-   @include ButtonDefault();
+  &-default{
+    @include ButtonDefault();
 
-    &:active {
-      border: 1px solid transparent;
-      background-color: #e0e0e0;
-      color: #333333;
-    }
   }
+
+
 
   &-link {
   @include ButtonLink()
@@ -51,19 +48,28 @@
 
   &-text {
    @include ButtonText();
-
-    &:hover {
-      background-color: rgba(21, 91, 212, 0.06);
-    }
-
-    &:active {
-      background-color: rgba(21, 91, 212, 0.09);
-    }
   }
 
   &-danger {
     @include ButtonStyle($danger, #ff7875, #d9363e)
   }
+
+  &-outline-default
+  ,
+  &-outline-primary{
+
+    @include ButtonOutline($primary)
+
+  }
+
+
+  &-outline-danger{
+
+  @include ButtonOutline($danger)
+
+  }
+
+
 
   &-disabled {
     color: #cccccc;
@@ -83,6 +89,22 @@
     cursor: not-allowed;
   }
 
+  &-loading-default {
+    @include ButtonDefault();
+    cursor: not-allowed;
+
+    &:hover {
+      color: #333333;
+      background-color: #F0F0F0;
+    }
+
+    &:active {
+      color: #333333;
+      background-color: #F0F0F0;
+    }
+
+  }
+
   &-loading-primary {
     @include ButtonStyle($primary, #356fd4, #114bae);
     cursor: not-allowed;
@@ -95,21 +117,6 @@
     &:active {
       color: #ffffff;
       background-color: $primary;
-    }
-
-  }
-
-  &-loading-default {
-    @include ButtonDefault();
-    cursor: not-allowed;
-
-    &:hover {
-      background-color: #ffffff;
-      color: $primary;
-    }
-
-    &:active {
-      border: 1px solid $primary;
     }
 
   }

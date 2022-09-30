@@ -17,19 +17,21 @@ interface BaseButtonProps {
     icon?: string
     loading?: boolean
     spin?: boolean
+    outline?: Boolean
 }
 
 type ButtonProps = Partial<Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type'> & AnchorHTMLAttributes<HTMLAnchorElement> & BaseButtonProps>
 
 
 export default function Button(props: ButtonProps) {
-    const {children, className, type, size, htmlType, disabled, href, target, style, onClick, icon, spin, loading, ...restProps} = props
+    const {children, className, type, size, htmlType, disabled, outline, href, target, style, onClick, icon, spin, loading, ...restProps} = props
 
     const buttonDisabled = loading || disabled
 
     const classes = classNames('zan-button', {
         [`zan-button-${type}`]: type,
         [`zan-button-${size}`]: size,
+        [`zan-button-outline-${type}`]: outline,
         [`zan-button-disabled${type === 'link' ? '-link' : ''}`]: buttonDisabled,
         [`zan-button-loading-${type}`]: loading
     }, className)
@@ -63,5 +65,6 @@ Button.defaultProps = {
     htmlType: 'submit',
     disabled: false,
     loading: false,
-    spin: false
+    spin: false,
+    outline: false
 }
