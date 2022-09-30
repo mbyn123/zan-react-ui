@@ -5,15 +5,16 @@ import './icon.scss'
 
 interface IconProps extends HTMLAttributes<HTMLElement> {
     name: string
+    spin?: boolean
 }
 
 export default function Icon(props: IconProps) {
-    const {name, className, ...restProps} = props
+    const {name, className, spin, ...restProps} = props
     return (
-        <span className={classNames('zan-icon', `zan-icon-${name}`, className)} {...restProps}>
-              <svg>
+        <span className={classNames('zan-icon', `zan-icon-${name}`,{'zan-icon-spin':spin}, className)} {...restProps}>
+              <svg className={classNames('zan-icon-inner')}>
                 <use xlinkHref={`#${name}`}/>
-            </svg>
+              </svg>
         </span>
     )
 }

@@ -35,3 +35,28 @@ $prefix: zan;
   animation: #{$prefix}-keyframes-spin $duration linear infinite;
 }
 
+@mixin ButtonIconSize($size) {
+  .zan-icon {
+    font-size: $size;
+    margin-right: 4px;
+  }
+}
+
+@mixin ButtonText(){
+  @include ButtonSize(0, 8px, 24px, 24px, 12px);
+  border: 0;
+  color: #155bd4;
+  background-color: rgba(21, 91, 212, 0.03);
+}
+
+@mixin ButtonLink(){
+  color: $primary;
+  text-decoration: none;
+  user-select: none;
+}
+
+@mixin ButtonDefault(){
+  border: 1px solid $primary;
+  color: $primary;
+  background-color: #ffffff;
+}

@@ -1,9 +1,3 @@
-@mixin ButtonIconSize($size) {
-  .zan-icon {
-    font-size: $size;
-    margin-right: 4px;
-  }
-}
 
 
 .zan-button {
@@ -21,10 +15,24 @@
   font-size: 14px;
   margin: 10px;
 
+
+  &-small {
+    @include ButtonSize(0, 8px, 24px, 22px, 12px);
+    @include ButtonIconSize(14px)
+  }
+
+  &-medium {
+    @include ButtonSize(0, 16px, 32px, 30px, 14px);
+    @include ButtonIconSize(16px)
+  }
+
+  &-large {
+    @include ButtonSize(0, 24px, 40px, 38px, 16px);
+    @include ButtonIconSize(20px)
+  }
+
   &-default {
-    border: 1px solid $primary;
-    color: $primary;
-    background-color: #ffffff;
+   @include ButtonDefault();
 
     &:active {
       border: 1px solid transparent;
@@ -34,20 +42,15 @@
   }
 
   &-link {
-    color: $primary;
-    text-decoration: none;
-    user-select: none;
+  @include ButtonLink()
   }
 
   &-primary {
-    @include ButtonStyle($primary, #356fd4, #114bae)
+    @include ButtonStyle($primary, #356fd4, #114bae);
   }
 
   &-text {
-    @include ButtonSize(0, 8px, 24px, 24px, 12px);
-    border: 0;
-    color: #155bd4;
-    background-color: rgba(21, 91, 212, 0.03);
+   @include ButtonText();
 
     &:hover {
       background-color: rgba(21, 91, 212, 0.06);
@@ -80,20 +83,61 @@
     cursor: not-allowed;
   }
 
-  &-small {
-    @include ButtonSize(0, 8px, 24px, 22px, 12px);
-    @include ButtonIconSize(14px)
+  &-loading-primary {
+    @include ButtonStyle($primary, #356fd4, #114bae);
+    cursor: not-allowed;
+
+    &:hover {
+      color: #ffffff;
+      background-color: $primary;
+    }
+
+    &:active {
+      color: #ffffff;
+      background-color: $primary;
+    }
+
   }
 
-  &-medium {
-    @include ButtonSize(0, 16px, 32px, 30px, 14px);
-    @include ButtonIconSize(16px)
+  &-loading-default {
+    @include ButtonDefault();
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: #ffffff;
+      color: $primary;
+    }
+
+    &:active {
+      border: 1px solid $primary;
+    }
+
   }
 
-  &-large {
-    @include ButtonSize(0, 24px, 40px, 38px, 16px);
-    @include ButtonIconSize(20px)
+  &-loading-text {
+    @include ButtonText();
+    cursor: not-allowed;
+
+    &:hover {
+      color: #155bd4;
+      background-color: rgba(21, 91, 212, 0.03);
+    }
+
+    &:active {
+      color: #155bd4;
+      background-color: rgba(21, 91, 212, 0.03);
+    }
   }
 
+  &-loading-link {
+    @include ButtonLink()
+  }
+
+  &-loading-danger {
+    @include ButtonStyle($danger, $danger, $danger);
+    &:hover{
+      color: #ffffff;
+    }
+  }
 
 }
