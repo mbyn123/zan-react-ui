@@ -92,3 +92,13 @@ $prefix: zan;
     background-color: #E8E8E8;
   }
 }
+
+@mixin ButtonIcon(){
+  &:hover{
+    background-color: #F7F7F7;
+  }
+
+  &:active{
+    background-color: #E8E8E8;
+  }
+}

@@ -1,5 +1,4 @@
 
-
 .zan-button {
   position: relative;
   display: inline-flex;
@@ -7,6 +6,8 @@
   justify-content: center;
   align-items: center;
   @include ButtonSize(0, 16px, 32px, 30px, 14px);
+  border: none;
+  background-color: transparent;
   border-radius: 2px;
   font-family: inherit;
   box-sizing: border-box;
@@ -16,30 +17,13 @@
   margin: 10px;
 
 
-  &-small {
-    @include ButtonSize(0, 8px, 24px, 22px, 12px);
-    @include ButtonIconSize(14px)
-  }
-
-  &-medium {
-    @include ButtonSize(0, 16px, 32px, 30px, 14px);
-    @include ButtonIconSize(16px)
-  }
-
-  &-large {
-    @include ButtonSize(0, 24px, 40px, 38px, 16px);
-    @include ButtonIconSize(20px)
-  }
-
-  &-default{
+  &-default {
     @include ButtonDefault();
-
   }
-
 
 
   &-link {
-  @include ButtonLink()
+    @include ButtonLink()
   }
 
   &-primary {
@@ -47,28 +31,24 @@
   }
 
   &-text {
-   @include ButtonText();
+    @include ButtonText();
   }
 
   &-danger {
     @include ButtonStyle($danger, #ff7875, #d9363e)
   }
 
-  &-outline-default
-  ,
-  &-outline-primary{
-
+  &-outline-default,
+  &-outline-primary {
     @include ButtonOutline($primary)
 
   }
 
 
-  &-outline-danger{
-
-  @include ButtonOutline($danger)
+  &-outline-danger {
+    @include ButtonOutline($danger)
 
   }
-
 
 
   &-disabled {
@@ -142,9 +122,44 @@
 
   &-loading-danger {
     @include ButtonStyle($danger, $danger, $danger);
-    &:hover{
+
+    &:hover {
       color: #ffffff;
     }
   }
+
+  &-small {
+    @include ButtonSize(0, 8px, 24px, 22px, 12px);
+    @include ButtonIconSize(14px)
+  }
+
+  &-medium {
+    @include ButtonSize(0, 16px, 32px, 30px, 14px);
+    @include ButtonIconSize(16px)
+  }
+
+  &-large {
+    @include ButtonSize(0, 24px, 40px, 38px, 16px);
+    @include ButtonIconSize(20px)
+  }
+
+  &-icon-small {
+    @include ButtonSize(0px, 0px, 24px, 22px, 12px);
+    @include ButtonIconSize(16px);
+    @include ButtonIcon()
+  }
+
+  &-icon-medium {
+    @include ButtonSize(0, 0, 28px, 26px, 14px);
+    @include ButtonIconSize(18px);
+    @include ButtonIcon()
+  }
+
+  &-icon-large {
+    @include ButtonSize(0, 0, 32px, 30px, 16px);
+    @include ButtonIconSize(24px);
+    @include ButtonIcon()
+  }
+
 
 }

@@ -29,8 +29,9 @@ export default function Button(props: ButtonProps) {
     const buttonDisabled = loading || disabled
 
     const classes = classNames('zan-button', {
-        [`zan-button-${type}`]: type,
+        [`zan-button-${type}`]: type && children,
         [`zan-button-${size}`]: size,
+        [`zan-button-icon-${size}`]: !children,
         [`zan-button-outline-${type}`]: outline,
         [`zan-button-disabled${type === 'link' ? '-link' : ''}`]: buttonDisabled,
         [`zan-button-loading-${type}`]: loading
