@@ -3,6 +3,7 @@ import {Navigate, RouteObject} from 'react-router-dom';
 import Install from "@doc/install.examples"
 import Button from '@doc/button.examples'
 import Icon from "@doc/icon.examples"
+import Dialog from "@doc/dialog.examples";
 
 const routes: RouteObject[] = [
     {
@@ -16,6 +17,10 @@ const routes: RouteObject[] = [
     {
         path: '/icon',
         element: <Icon/>
+    },
+    {
+        path: '/dialog',
+        element: <Dialog/>
     },
     {
         path: '/',

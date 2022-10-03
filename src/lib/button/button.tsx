@@ -23,7 +23,7 @@ interface BaseButtonProps {
 type ButtonProps = Partial<Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type'> & AnchorHTMLAttributes<HTMLAnchorElement> & BaseButtonProps>
 
 
-export default function Button(props: ButtonProps) {
+const Button:React.FC<ButtonProps> =(props)=> {
     const {children, className, type, size, htmlType, disabled, outline, href, target, style, onClick, icon, spin, loading, ...restProps} = props
 
     const buttonDisabled = loading || disabled
@@ -69,3 +69,5 @@ Button.defaultProps = {
     spin: false,
     outline: false
 }
+
+export default Button

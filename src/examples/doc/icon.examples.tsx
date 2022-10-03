@@ -10,6 +10,7 @@ export default function (){
             <Icon name="examine" onMouseMove={()=>console.log('456456456')}/>
             <Icon name="folder" style={{color:'red'}}/>
             <Icon name="logout"/>
+            <Icon name="close"/>
         </div>
     )
 }
