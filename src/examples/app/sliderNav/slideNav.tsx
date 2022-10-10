@@ -22,6 +22,9 @@ const SlideNav = () => {
                 <li className='menu-item'>
                     <NavLink to='/dialog'>Dialog 对话框</NavLink>
                 </li>
+                <li className='menu-item'>
+                    <NavLink to='/checkBox'>CheckBox 选择框</NavLink>
+                </li>
             </ul>
         </div>
     )

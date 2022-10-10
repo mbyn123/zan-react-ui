@@ -4,6 +4,7 @@ import Install from "@doc/install.examples"
 import Button from '@doc/button.examples'
 import Icon from "@doc/icon.examples"
 import Dialog from "@doc/dialog.examples";
+import CheckBox from "@doc/checkBox.examples";
 
 const routes: RouteObject[] = [
     {
@@ -21,6 +22,10 @@ const routes: RouteObject[] = [
     {
         path: '/dialog',
         element: <Dialog/>
+    },
+    {
+        path: '/checkBox',
+        element: <CheckBox/>
     },
     {
         path: '/',
