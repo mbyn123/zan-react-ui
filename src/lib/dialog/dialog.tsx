@@ -1,4 +1,4 @@
-import React, {ReactNode} from "react";
+import React, {ReactNode,} from "react";
 import ReactDOM from "react-dom";
 import {createRoot} from 'react-dom/client'
 import classes, {scopedClassMaker} from "@/utils/classes";
@@ -21,7 +21,9 @@ interface DialogProps {
     maskClosable?: boolean
 }
 
+
 const sc = scopedClassMaker('zan-dialog')
+
 
 const Dialog: React.FC<DialogProps> = (props) => {
     const {children, visible, maskClosable, closeBtn, title, footer, className, style, mask, onConfirm, onClose} = props
@@ -33,7 +35,6 @@ const Dialog: React.FC<DialogProps> = (props) => {
     const clickConfirm = () => {
         onConfirm && onConfirm()
     }
-
 
     const dom = visible ? (
         <div className={classes(sc(mask ? 'mask' : 'mask-none'), className)} style={style} onClick={() => maskClosable && clickClose()}>
