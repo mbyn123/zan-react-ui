@@ -4,11 +4,6 @@ $size: 16px;
   display: inline-block;
   cursor: pointer;
   user-select: none;
-
-  &.zan-checkbox-disabled {
-    cursor: not-allowed;
-  }
-
 }
 
 .zan-checkbox {
@@ -107,6 +102,7 @@ $size: 16px;
 }
 
 .zan-checkbox-disabled {
+  cursor: not-allowed;
   & > span {
     border-color: #999;
   }

@@ -18,7 +18,7 @@ export default function (){
             <br/>
             <CheckBox disabled/><br/>
             <CheckBox disabled checked={true}>B</CheckBox><br/>
-            <CheckBox disabled indeterminate/>
+            <CheckBox disabled indeterminate />
         </div>
     )
 }

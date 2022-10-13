@@ -16,12 +16,14 @@ interface CheckBoxProps {
     onChange?: (e: ICheckboxEvent) => void
     indeterminate?: boolean
     disabled?: boolean
+    style?:React.CSSProperties
+    labelStyle?:React.CSSProperties
 }
 
 const sc = scopedClassMaker('zan-checkbox')
 
 const CheckBox: React.FC<CheckBoxProps> = (props) => {
-    const {className, children, indeterminate, disabled} = props
+    const {className, children, indeterminate, disabled,style,labelStyle} = props
 
     const onchange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
         props.onChange && props.onChange(e)
@@ -32,13 +34,13 @@ const CheckBox: React.FC<CheckBoxProps> = (props) => {
             [sc('checked')]: props.checked,
             [sc('disabled')]:disabled,
             [sc('indeterminate')]: indeterminate
-        })}>
+        })} style={style}>
             <span className={sc('')}>
                 <span className={sc('inner')}/>
                 <input type="checkbox" onChange={onchange}/>
             </span>
             {
-                children && <div className={sc('label')}>{children}</div>
+                children && <div className={sc('label')} style={labelStyle}>{children}</div>
             }
         </label>
     )
