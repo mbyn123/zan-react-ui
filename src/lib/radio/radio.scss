@@ -1,0 +1,93 @@
+$outer-size: 16px;
+$inner-size: 8px;
+$inner-offset: ($outer-size - $inner-size - 2px) * 0.5;
+
+.zan-radio-wrapper {
+  display: inline-block;
+  cursor: pointer;
+  font-size: 0;
+  margin: 0;
+  padding: 0;
+  margin-right: 24px;
+  vertical-align: middle;
+  &:not(.zan-radio-disabled):hover{
+     .zan-radio-inner{
+       border: 1px solid $primary;
+     }
+  }
+}
+
+.zan-radio {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  white-space: nowrap;
+  outline: none;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+
+  & > input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  &-label {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 8px;
+    font-size: 14px;
+  }
+}
+
+.zan-radio-inner {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  vertical-align: middle;
+  width: $outer-size;
+  height: $outer-size;
+  border-radius: 50%;
+  border: 1px solid #e0e0e0;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  transition: all .1s;
+
+  &:after {
+    position: absolute;
+    display: block;
+    content: ' ';
+    left: $inner-offset;
+    top: $inner-offset;
+    width: $inner-size;
+    height: $inner-size;
+    border-radius: 50%;
+    background-color: #ffffff;
+    transform: scale(0);
+    transition: all .1s ease-in-out;
+  }
+}
+
+.zan-radio-checked {
+  >.zan-radio{
+    >.zan-radio-inner{
+      border: 1px solid $primary;
+      &:after{
+        background-color: $primary;
+        transform: scale(1);
+      }
+    }
+  }
+
+}
