@@ -17,6 +17,13 @@ export default function () {
                 <Radio value={3}>C</Radio>
                 <Radio value={4}>D</Radio>
             </RadioGroup>
+            <br/>
+            <RadioGroup value={radioValue} onChange={radioChange} >
+                <Radio value={1}>A</Radio>
+                <Radio value={2}>B</Radio>
+                <Radio value={3}>C</Radio>
+                <Radio value={4}>D</Radio>
+            </RadioGroup>
         </div>
     )
 }

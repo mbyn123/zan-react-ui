@@ -23,12 +23,14 @@
         width: 100%;
         padding-left: 40px;
         box-sizing: border-box;
-        &:hover{
-          background: lighten($primary,50%);
+        &:not(.active):hover{
+          background:#f5f7fa;
+          color: $primary;
         }
       }
       .active{
         color: $primary;
+        background: lighten($primary,50%);
       }
     }
   }
