@@ -4,8 +4,12 @@ $danger: #dc3545;
 $prefix: zan;
 
 @keyframes #{$prefix}-keyframes-spin {
-  0%{transform: rotate(0)}
-  100%{transform: rotate(360deg)}
+  0% {
+    transform: rotate(0)
+  }
+  100% {
+    transform: rotate(360deg)
+  }
 }
 
 @mixin ButtonSize($padding-y,$padding-x,$height,$line-height,$font-size) {
@@ -15,7 +19,7 @@ $prefix: zan;
   font-size: $font-size;
 }
 
-@mixin ButtonStyle($color,$hover,$active){
+@mixin ButtonStyle($color,$hover,$active) {
   border: none;
   background-color: $color;
   color: #ffffff;
@@ -31,7 +35,7 @@ $prefix: zan;
   }
 }
 
-@mixin spin($duration){
+@mixin spin($duration) {
   animation: #{$prefix}-keyframes-spin $duration linear infinite;
 }
 
@@ -42,7 +46,7 @@ $prefix: zan;
   }
 }
 
-@mixin ButtonText(){
+@mixin ButtonText() {
   @include ButtonSize(0, 8px, 24px, 24px, 12px);
   border: 0;
   color: #155bd4;
@@ -57,17 +61,17 @@ $prefix: zan;
   }
 }
 
-@mixin ButtonLink(){
+@mixin ButtonLink() {
   color: $primary;
   text-decoration: none;
   user-select: none;
 }
 
-@mixin ButtonOutline($color){
+@mixin ButtonOutline($color) {
   border: 1px solid $color;
   color: $color;
   background-color: #ffffff;
-  &:hover{
+  &:hover {
     border: 1px solid $color;
     color: $color;
     background-color: #ffffff;
@@ -79,26 +83,36 @@ $prefix: zan;
   }
 }
 
-@mixin ButtonDefault(){
+@mixin ButtonDefault() {
   border: none;
   color: #333333;
   background-color: #F0F0F0;
 
-  &:hover{
+  &:hover {
     background-color: #F7F7F7;
   }
 
-  &:active{
+  &:active {
     background-color: #E8E8E8;
   }
 }
 
-@mixin ButtonIcon(){
-  &:hover{
+@mixin ButtonIcon() {
+  &:hover {
     background-color: #F7F7F7;
   }
 
-  &:active{
+  &:active {
     background-color: #E8E8E8;
+  }
+}
+
+
+@keyframes zan-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

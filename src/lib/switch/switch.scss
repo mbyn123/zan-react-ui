@@ -1,0 +1,150 @@
+
+
+.zan-switch {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 44px;
+  height: 22px;
+  line-height: 22px;
+  border-radius: 100px;
+  background-color: #999999;
+  border: 1px solid #999999;
+  cursor: pointer;
+  user-select: none;
+
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    transition: left 0.3s;
+  }
+
+  &-checked {
+    border-color: $primary;
+    background-color: $primary;
+
+    &:after {
+      left: 23px;
+    }
+  }
+
+  &-small {
+    width: 28px;
+    height: 16px;
+
+    &:after {
+      width: 12px;
+      height: 12px;
+      left: 1px;
+      top: 1px;
+    }
+
+    &.zan-switch-checked:after {
+      left: 13px;
+    }
+  }
+
+  &-large {
+    width: 56px;
+    height: 30px;
+    //line-height: 12px;
+    border-radius: 50px;
+
+    &:after {
+      width: 24px;
+      height: 24px;
+      top: 2px;
+      left: 2px;
+    }
+
+    &.zan-switch-checked:after {
+      left: 24px;
+    }
+  }
+
+  &-disabled {
+    background-color: #ccc;
+    border-color: #cccccc;
+    cursor: not-allowed;
+
+    &.zan-switch-checked {
+      background-color: rgb(148, 180, 235);
+      border-color: rgb(148, 180, 235);
+    }
+
+    &::after {
+      background-color: #ffffff;
+      cursor: not-allowed;
+    }
+  }
+
+  &-loading {
+    position: relative;
+    cursor: not-allowed;
+
+    &::before {
+      content: ' ';
+      position: absolute;
+      top: 38%;
+      left: 36%;
+      z-index: 2;
+      width: 10px;
+      height: 10px;
+      margin: -5px 0 0 -12px;
+      border: 2px solid;
+      border-top-color: #e6efff;
+      border-right-color: #e6efff;
+      border-bottom-color: #155bd4;
+      border-left-color: #155bd4;
+      border-radius: 100%;
+      animation: zan-spin 1s cubic-bezier(0, 0, 0.1, 0.1);
+      animation-iteration-count: infinite;
+    }
+
+    &.zan-switch-checked{
+      &::before{
+        margin: -5px 0 0 10px;
+      }
+    }
+
+    &.zan-switch-small {
+      &::before {
+        width: 8px;
+        height: 8px;
+        margin: -3px 0 0 -7px;
+        border-width: 1px;
+      }
+
+      &.zan-switch-checked {
+        &::before {
+          margin: -3px 0 0 5px;
+        }
+      }
+    }
+
+    &.zan-switch-large{
+      &::before{
+        width: 16px;
+        height: 16px;
+        margin: -7px 0 0 -15px;
+      }
+
+      &.zan-switch-checked {
+        &::before {
+          margin: -7px 0 0 7px;
+        }
+      }
+    }
+
+  }
+
+
+
+}

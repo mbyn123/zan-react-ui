@@ -28,6 +28,9 @@ const SlideNav = () => {
                 <li className='menu-item'>
                     <NavLink to='/radio'>Radio 单选框</NavLink>
                 </li>
+                <li className='menu-item'>
+                    <NavLink to='/switch'>Switch 开关</NavLink>
+                </li>
             </ul>
         </div>
     )
