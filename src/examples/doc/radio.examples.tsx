@@ -11,7 +11,7 @@ export default function () {
 
     return (
         <div>
-            <RadioGroup value={radioValue} onChange={radioChange}>
+            <RadioGroup value={radioValue} onChange={radioChange} disabled>
                 <Radio value={1}>A</Radio>
                 <Radio value={2}>B</Radio>
                 <Radio value={3}>C</Radio>

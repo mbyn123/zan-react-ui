@@ -2,6 +2,11 @@ $outer-size: 16px;
 $inner-size: 8px;
 $inner-offset: ($outer-size - $inner-size - 2px) * 0.5;
 
+
+.zan-radio-group{
+  display: inline-block;
+}
+
 .zan-radio-wrapper {
   display: inline-block;
   cursor: pointer;
@@ -16,6 +21,7 @@ $inner-offset: ($outer-size - $inner-size - 2px) * 0.5;
      }
   }
 }
+
 
 .zan-radio {
   position: relative;
@@ -90,4 +96,19 @@ $inner-offset: ($outer-size - $inner-size - 2px) * 0.5;
     }
   }
 
+}
+
+.zan-radio-disabled{
+  cursor: not-allowed;
+  >.zan-radio{
+    >.zan-radio-inner{
+      border-color: #e0e0e0;
+      &:after{
+        background-color: #e0e0e0;
+      }
+    }
+  }
+  >.zan-radio-label{
+    color: #cccccc;
+  }
 }

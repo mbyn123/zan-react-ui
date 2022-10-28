@@ -16,14 +16,17 @@ interface RadioProps<Value> {
     value: Value
     children?: React.ReactNode
     className?: string
+    disabled?: boolean
     onChange?: (e: IRadioEvent<Value>) => void
+    style?: React.CSSProperties
+    labelStyle?: React.CSSProperties
 }
 
 const sc = scopedClassMaker('zan-radio')
 
 function Radio(props: RadioProps<Value>) {
 
-    const {children, className, value, ...rest} = props
+    const {children, className, value, disabled,style, labelStyle,...rest} = props
 
     const radioGroupCtx = useContext(RadioGroupContext)
 
@@ -40,6 +43,9 @@ function Radio(props: RadioProps<Value>) {
     }
 
     const onChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+        if (disabled || radioGroupCtx?.disabled) {
+            return
+        }
         const ctxChange = radioGroupCtx && radioGroupCtx.onRadioChange
         const e: IRadioEvent<Value> = Object.create(event)
         e.target = {
@@ -56,13 +62,14 @@ function Radio(props: RadioProps<Value>) {
     return (
 
         <label className={classNames('zan-radio-wrapper', className, {
-            [sc('checked')]: checked
-        })}>
+            [sc('checked')]: checked,
+            [sc('disabled')]: disabled || radioGroupCtx?.disabled
+        })} style={style}>
                 <span className="zan-radio">
                     <span className='zan-radio-inner'/>
                     <input {...rest} type="radio" checked={checked} onChange={onChange}/>
                 </span>
-            <span className="zan-radio-label">{children}{checked}</span>
+            <span className="zan-radio-label" style={labelStyle}>{children}{checked}</span>
         </label>
     )
 }
