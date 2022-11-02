@@ -31,6 +31,9 @@ const SlideNav = () => {
                 <li className='menu-item'>
                     <NavLink to='/switch'>Switch 开关</NavLink>
                 </li>
+                <li className='menu-item'>
+                    <NavLink to='/notify'>Notify 轻提示</NavLink>
+                </li>
             </ul>
         </div>
     )

@@ -53,7 +53,6 @@ const Dialog: React.FC<DialogProps> = (props) => {
                     {children}
                 </main>
                 <footer className={sc('footer')}>
-
                     {
                         footer ? footer : footer === null ? null : (
                             <div className={sc('footer-button-wrapper')}>

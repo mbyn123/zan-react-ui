@@ -7,6 +7,7 @@ import Dialog from "@doc/dialog.examples";
 import CheckBox from "@doc/checkBox.examples";
 import Radio from "@doc/radio.examples";
 import Switch from "@doc/switch.examples"
+import Notify from "@doc/notify.examples";
 
 const routes: RouteObject[] = [
     {
@@ -36,6 +37,10 @@ const routes: RouteObject[] = [
     {
         path: '/switch',
         element: <Switch/>
+    },
+    {
+        path: '/notify',
+        element: <Notify/>
     },
     {
         path: '/',
