@@ -26,6 +26,10 @@ $transition-duration: 160ms;
     background-color: #ffffff;
     box-shadow: 0 2px 24px 0 rgba(#000, 0.1);
 
+    &:empty:before {
+      content: '\200b';
+    }
+
     &-icon {
       font-size: 16px;
 
