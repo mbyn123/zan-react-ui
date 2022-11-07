@@ -7,7 +7,7 @@ export default function () {
     const success = ()=>{
         const id =  Notify.success('成功提示')
         console.log(id);
-        Notify.clear(id)
+        // Notify.clear(id)
     }
 
     return (

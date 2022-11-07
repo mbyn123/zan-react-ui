@@ -1,0 +1,141 @@
+$drawer-ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+$drawer-ease-in: cubic-bezier(0.32, 0, 0.67, 0);
+$transition-duration: 300ms;
+$z-index:1000;
+
+.zan-drawer {
+  &-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 100%;
+    z-index: $z-index;
+  }
+
+  &-content{
+    position: fixed;
+    z-index: $z-index;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-body{
+    flex: 1;
+    word-wrap: break-word;
+    overflow: auto;
+  }
+
+  &-transition {
+    &-backdrop {
+      &-appear {
+        opacity: 0;
+      }
+
+      &-appear-active {
+        opacity: 1;
+        transition: opacity 300ms $drawer-ease-in;
+      }
+
+      &-exit {
+        opacity: 1;
+      }
+
+      &-exit-appear-active {
+        opacity: 0;
+        transition: opacity $transition-duration $drawer-ease-out;
+      }
+    }
+
+    @mixin appear($val: 100%, $placement: X) {
+      transform: translate#{$placement }($val);
+    }
+    @mixin appear-active($val: 0, $placement: X) {
+      transform: translate#{$placement }($val);
+      transition: transform $transition-duration $drawer-ease-in;
+    }
+    @mixin exit($val: 0, $placement: X) {
+      transform: translate#{$placement }($val);
+    }
+    @mixin exit-active($val: 100%, $placement: X) {
+      transform: translate#{$placement }($val);
+      transition: transform $transition-duration $drawer-ease-out;
+    }
+
+    &-top {
+      &-appear {
+        @include appear(-100%, Y);
+      }
+
+      &-appear-active {
+        @include appear-active(0, Y);
+      }
+
+      &-exit {
+        @include exit(0, Y);
+      }
+
+      &-exit-active {
+        @include exit-active(-100%, Y);
+      }
+    }
+
+    &-right {
+      &-appear {
+        @include appear;
+      }
+
+      &-appear-active {
+        @include appear-active;
+      }
+
+      &-exit {
+        @include exit;
+      }
+
+      &-exit-active {
+        @include exit-active;
+      }
+    }
+
+    &-bottom {
+      &-appear {
+        @include appear(100%, Y);
+      }
+
+      &-appear-active {
+        @include appear-active(0, Y);
+      }
+
+      &-exit {
+        @include exit(0, Y);
+      }
+
+      &-exit-active {
+        @include exit-active(100%, Y);
+      }
+    }
+
+    &-left {
+      &-appear {
+        @include appear(-100%, X);
+      }
+
+      &-appear-active {
+        @include appear-active(0, X);
+      }
+
+      &-exit {
+        @include exit(0, X);
+      }
+
+      &-exit-active {
+        @include exit-active(-100%, X);
+      }
+    }
+
+  }
+}

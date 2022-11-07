@@ -8,6 +8,7 @@ import CheckBox from "@doc/checkBox.examples";
 import Radio from "@doc/radio.examples";
 import Switch from "@doc/switch.examples"
 import Notify from "@doc/notify.examples";
+import Drawer from "@doc/drawer.examples";
 
 const routes: RouteObject[] = [
     {
@@ -41,6 +42,10 @@ const routes: RouteObject[] = [
     {
         path: '/notify',
         element: <Notify/>
+    },
+    {
+        path: '/drawer',
+        element: <Drawer/>
     },
     {
         path: '/',
