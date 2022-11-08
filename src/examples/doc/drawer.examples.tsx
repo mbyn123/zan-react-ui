@@ -14,7 +14,7 @@ export default function () {
     return (
         <div>
             <Button type='primary' onClick={() => setVisible(true)}>开启</Button>
-            <Drawer visible={visible} onClose={onClose}>12231231</Drawer>
+            <Drawer visible={visible} onClose={onClose} >12231231</Drawer>
         </div>
     )
 }

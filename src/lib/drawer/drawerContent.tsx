@@ -1,13 +1,19 @@
 import React, {useMemo} from "react";
 import {CSSTransition} from "react-transition-group";
 import {sc} from "@lib/drawer/drawer";
+import Icon from "@lib/icon/icon";
+import classNames from "classnames";
 
 interface DrawerComponent {
     visible: boolean
+    mask?:boolean
     children?: React.ReactNode
     width?: number | string
     height?: number | string
+    closeBtn?: boolean
+    title?: React.ReactNode
     onExited: () => void
+    onClose?:()=> void
 }
 
 interface DrawerContentCrosswise extends DrawerComponent {
@@ -31,7 +37,7 @@ const placementObj = {
 
 const DrawerContent: React.FC<DrawerContentProps> = (props) => {
 
-    const {visible, children, placement, onExited, ...rest} = props
+    const {visible, children, placement, mask,title,closeBtn,onClose,onExited, ...rest} = props
 
     const width = 'width' in rest && rest.width
     const height = 'height' in rest && rest.height
@@ -55,7 +61,16 @@ const DrawerContent: React.FC<DrawerContentProps> = (props) => {
             timeout={300}
             onExited={onExited}
             classNames={sc(`transition-${placement}`)}>
-            <div className={sc('content')} style={{...placementObj[placement], ...customWH}}>
+            <div className={classNames( sc('content'),{
+                [`${sc('content-transparent')}`]: !mask,
+
+            }) } style={{...placementObj[placement], ...customWH}}>
+                <div onClick={onClose} className={sc('close')}>
+                    {true === closeBtn ? <Icon name="close" /> : closeBtn}
+                </div>
+                <div className={sc('header')}>
+                    <span className={sc('header-title')}>{title}</span>
+                </div>
                 <div className={sc('body')}>
                     {children}
                 </div>
