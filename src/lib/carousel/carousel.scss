@@ -1,0 +1,11 @@
+.zan-carousel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid red;
+
+  &-container {
+    height: 100%;
+    position: relative;
+    transition: cubic-bezier(0.65, 0, 0.35, 1);
+  }
+}

@@ -9,6 +9,7 @@ import Radio from "@doc/radio.examples";
 import Switch from "@doc/switch.examples"
 import Notify from "@doc/notify.examples";
 import Drawer from "@doc/drawer.examples";
+import Carousel from "@doc/carousel.examples"
 
 const routes: RouteObject[] = [
     {
@@ -46,6 +47,10 @@ const routes: RouteObject[] = [
     {
         path: '/drawer',
         element: <Drawer/>
+    },
+    {
+        path: '/carousel',
+        element: <Carousel/>
     },
     {
         path: '/',
