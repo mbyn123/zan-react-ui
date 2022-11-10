@@ -9,19 +9,32 @@ const setStyle = (target: any, styles: any) => {
     })
 }
 
+function usePrevious<T>(value: T) {
+    const ref = useRef<T>();
+    useEffect(() => {
+        ref.current = value;
+    });
+    return ref.current;
+}
+
+
 interface CarouselProps {
     children: React.ReactNode
-    className: string
-    transitionDuration?: number
+    className?: string
+    autoPlay?: boolean
+    transitionDuration?: number // 切换动画持续时间
+    autoplayInterval?: number // 自动切换间隔时间
 }
 
 const Carousel: React.FC<CarouselProps> = (props) => {
-    const {children, className} = props
+    const {children, className, autoPlay, autoplayInterval, transitionDuration} = props
 
     const [currentIndex, setCurrentIndex] = useState(0)
+    const prevIndex = usePrevious<number>(currentIndex)
+
     const swiperRef = useRef<HTMLDivElement | null>(null)
     const containerRef = useRef<HTMLDivElement | null>(null)
-    const timer = useRef<NodeJS.Timer>()
+    const autoPlayTimer = useRef<NodeJS.Timer>()
 
     const swiperWidth = useRef(0)
 
@@ -37,22 +50,49 @@ const Carousel: React.FC<CarouselProps> = (props) => {
             setStyle(item, {width: `${100 / innerElements.length}%`})
         }
 
-        translate(currentIndex)
-        timer.current = setInterval(() => {
-            setCurrentIndex((v) => v + 1)
-        }, 1000)
+
+        if (childrenCount > 1) {
+            autoPlay && startAutoPlay()
+            translate(currentIndex, true)
+        }
     }
 
-    const translate = (index: number) => {
+    const startAutoPlay = () => {
+        autoPlayTimer.current = setTimeout(next, autoplayInterval)
+    }
+
+    const clearAutoPlay = () => {
+        clearTimeout(autoPlayTimer.current)
+        autoPlayTimer.current = undefined
+    }
+
+    const next = () => {
+        if (Children.count(props.children) === 1) return
+        swipeTo(currentIndex + 1)
+    }
+
+    const prev = () => {
+        swipeTo(currentIndex - 1)
+    }
+
+    const swipeTo = (index: number) => {
+        setCurrentIndex(() => index)
+    }
+
+    const translate = (index: number, isSilent?: boolean) => {
         const {length} = props.children as any
         const initIndex = -1
         const translateDistance = swiperWidth.current * (initIndex - index)
-        console.log(swiperWidth.current, index, 'currentIndex', translateDistance)
+        const realDuration = isSilent ? 0 : transitionDuration
+        if (autoPlay) {
+            clearTimeout(autoPlayTimer.current)
+            autoPlayTimer.current = setTimeout(next, autoplayInterval)
+        }
 
 
         setStyle(containerRef.current, {
             transform: `translateX(${translateDistance}px)`,
-            'transition-duration': `${0}ms`,
+            'transition-duration': `${realDuration}ms`,
         })
         if (index > length - 1 || index < 0) {
             return resetPosition(index)
@@ -61,13 +101,19 @@ const Carousel: React.FC<CarouselProps> = (props) => {
     }
 
     const resetPosition = (index: number) => {
-        clearInterval(timer.current)
         const {length} = props.children as any
-        setCurrentIndex(() => index < 0 ? length - 1 : 0)
+        setTimeout(() => {
+            setCurrentIndex(() => index < 0 ? length - 1 : 0)
+        }, transitionDuration)
+
     }
 
     useEffect(() => {
-        translate(currentIndex)
+
+        const isSilent = prevIndex !== undefined ? (prevIndex > (props.children as any).length - 1 || prevIndex < 0) : false
+        if (prevIndex !== currentIndex) {
+            translate(currentIndex, isSilent)
+        }
     }, [currentIndex])
 
 
@@ -96,6 +142,7 @@ const Carousel: React.FC<CarouselProps> = (props) => {
 
     useEffect(() => {
         init()
+        return clearAutoPlay
     }, [])
 
 
@@ -114,6 +161,12 @@ const Carousel: React.FC<CarouselProps> = (props) => {
             </div>
         </div>
     )
+}
+
+Carousel.defaultProps = {
+    transitionDuration: 300,
+    autoPlay: false,
+    autoplayInterval: 1500
 }
 
 export default Carousel
