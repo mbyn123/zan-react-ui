@@ -24,10 +24,11 @@ interface CarouselProps {
     autoPlay?: boolean
     transitionDuration?: number // 切换动画持续时间
     autoplayInterval?: number // 自动切换间隔时间
+    onChange?: (current: number, prev: number | null) => void
 }
 
 const Carousel: React.FC<CarouselProps> = (props) => {
-    const {children, className, autoPlay, autoplayInterval, transitionDuration} = props
+    const {children, className, autoPlay, autoplayInterval, transitionDuration, onChange} = props
 
     const [currentIndex, setCurrentIndex] = useState(0)
     const prevIndex = usePrevious<number>(currentIndex)
@@ -67,7 +68,7 @@ const Carousel: React.FC<CarouselProps> = (props) => {
     }
 
     const next = () => {
-        if (Children.count(props.children) === 1) return
+        if (Children.count(children) === 1) return
         swipeTo(currentIndex + 1)
     }
 
@@ -79,8 +80,22 @@ const Carousel: React.FC<CarouselProps> = (props) => {
         setCurrentIndex(() => index)
     }
 
+    const getPrevIndex = (index: number | undefined) => {
+        const length = (children as any).length
+        if (index === undefined) {
+            return null
+        }
+        if (index > length - 1) {
+            return length - 1
+        }
+        if (index < 0) {
+            return 0
+        }
+        return index
+    }
+
     const translate = (index: number, isSilent?: boolean) => {
-        const {length} = props.children as any
+        const {length} = children as any
         const initIndex = -1
         const translateDistance = swiperWidth.current * (initIndex - index)
         const realDuration = isSilent ? 0 : transitionDuration
@@ -97,7 +112,7 @@ const Carousel: React.FC<CarouselProps> = (props) => {
         if (index > length - 1 || index < 0) {
             return resetPosition(index)
         }
-
+        onChange && onChange(currentIndex, getPrevIndex(prevIndex))
     }
 
     const resetPosition = (index: number) => {
