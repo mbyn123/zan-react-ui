@@ -11,7 +11,7 @@ export default function () {
     return (
         <div>
             <div>
-                <Carousel className='card-wrapper' onChange={onChange} autoPlay={true} autoplayInterval={1000} transitionDuration={800}>
+                <Carousel className='card-wrapper' onChange={onChange} autoPlay={false} autoplayInterval={1000} transitionDuration={800}>
                     <div className='card'>1</div>
                     <div className='card'>2</div>
                     <div className='card'>3</div>

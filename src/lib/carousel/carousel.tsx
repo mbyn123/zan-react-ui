@@ -2,6 +2,7 @@ import React, {Children, cloneElement, useEffect, useRef, useState} from "react"
 import classNames from "classnames";
 import {scopedClassMaker} from "@/utils/classes";
 import './carousel.scss'
+import Icon from "../icon/icon";
 
 const setStyle = (target: any, styles: any) => {
     Object.keys(styles).forEach(attr => {
@@ -25,10 +26,24 @@ interface CarouselProps {
     transitionDuration?: number // 切换动画持续时间
     autoplayInterval?: number // 自动切换间隔时间
     onChange?: (current: number, prev: number | null) => void
+    arrow?: boolean | 'hover'
+    arrowsDisabled?: {
+        left?: boolean
+        right?: boolean
+    }
+    renderPrevArrow?: (onPrev: () => void, disabled?: boolean) => React.ReactNode
+    renderNextArrow?: (onNext: () => void, disabled?: boolean) => React.ReactNode
 }
 
+const sc = scopedClassMaker('zan-carousel')
+
 const Carousel: React.FC<CarouselProps> = (props) => {
-    const {children, className, autoPlay, autoplayInterval, transitionDuration, onChange} = props
+    const {
+        children, className,
+        autoPlay, autoplayInterval, transitionDuration,
+        arrow, arrowsDisabled,
+        onChange, renderPrevArrow, renderNextArrow
+    } = props
 
     const [currentIndex, setCurrentIndex] = useState(0)
     const prevIndex = usePrevious<number>(currentIndex)
@@ -36,8 +51,8 @@ const Carousel: React.FC<CarouselProps> = (props) => {
     const swiperRef = useRef<HTMLDivElement | null>(null)
     const containerRef = useRef<HTMLDivElement | null>(null)
     const autoPlayTimer = useRef<NodeJS.Timer>()
-
     const swiperWidth = useRef(0)
+    const isSwiping = useRef(false) // 动画是否播放完成
 
     const init = () => {
         swiperWidth.current = swiperRef.current?.getBoundingClientRect().width || 0
@@ -77,6 +92,8 @@ const Carousel: React.FC<CarouselProps> = (props) => {
     }
 
     const swipeTo = (index: number) => {
+        if (currentIndex === index || isSwiping.current) return
+        isSwiping.current = true
         setCurrentIndex(() => index)
     }
 
@@ -103,8 +120,6 @@ const Carousel: React.FC<CarouselProps> = (props) => {
             clearTimeout(autoPlayTimer.current)
             autoPlayTimer.current = setTimeout(next, autoplayInterval)
         }
-
-
         setStyle(containerRef.current, {
             transform: `translateX(${translateDistance}px)`,
             'transition-duration': `${realDuration}ms`,
@@ -112,6 +127,9 @@ const Carousel: React.FC<CarouselProps> = (props) => {
         if (index > length - 1 || index < 0) {
             return resetPosition(index)
         }
+        setTimeout(() => {
+            isSwiping.current = false
+        }, realDuration)
         onChange && onChange(currentIndex, getPrevIndex(prevIndex))
     }
 
@@ -160,14 +178,23 @@ const Carousel: React.FC<CarouselProps> = (props) => {
         return clearAutoPlay
     }, [])
 
+    const childrenCount = Children.count(children);
 
-    const sc = scopedClassMaker('zan-carousel')
-    const classString = classNames(sc(''), className)
+    const classString = classNames(sc(''), className, {
+        [sc('hover-show-arrow')]: arrow === 'hover'
+    })
 
 
     return (
         <div ref={swiperRef} className={classString}>
+            {
+                arrow && childrenCount > 1 && renderPrevArrow && renderPrevArrow(prev, arrowsDisabled?.left)
+            }
+            {
+                arrow && childrenCount > 1 && renderNextArrow && renderNextArrow(next, arrowsDisabled?.right)
+            }
             <div ref={containerRef} className={sc('container')}>
+
                 {
                     Children.map(getChildren(children), (child: any, index) => {
                         return cloneElement(child, {key: index, style: {float: 'left', height: '100%'}})
@@ -178,10 +205,38 @@ const Carousel: React.FC<CarouselProps> = (props) => {
     )
 }
 
+const defaultPrevArrow: CarouselProps['renderPrevArrow'] = (onPerv, disabled) => {
+    return (
+        <div className={classNames(sc('arrow'), sc('arrow-left'), {
+            [sc('arrow-disabled')]: disabled
+        })} onClick={disabled ? undefined : onPerv}>
+            <Icon name='left' className={sc('arrow-icon')}/>
+        </div>
+    )
+}
+
+const defaultNextArrow: CarouselProps['renderNextArrow'] = (onNext, disabled) => {
+    return (
+        <div className={classNames(sc('arrow'), sc('arrow-right'), {
+            [sc('arrow-disabled')]: disabled
+        })} onClick={disabled ? undefined : onNext}>
+            <Icon name='right' className={sc('arrow-icon')}/>
+        </div>
+    )
+}
+
 Carousel.defaultProps = {
     transitionDuration: 300,
     autoPlay: false,
-    autoplayInterval: 1500
+    autoplayInterval: 1500,
+    arrow: 'hover',
+    arrowsDisabled: {
+        left: true,
+        right: false
+    },
+    renderPrevArrow: defaultPrevArrow,
+    renderNextArrow: defaultNextArrow
+
 }
 
 export default Carousel

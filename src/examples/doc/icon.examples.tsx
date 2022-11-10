@@ -11,6 +11,8 @@ export default function (){
             <Icon name="folder" style={{color:'red'}}/>
             <Icon name="logout"/>
             <Icon name="close"/>
+            <Icon name="left"/>
+            <Icon name="right"/>
         </div>
     )
 }
