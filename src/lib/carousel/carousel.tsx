@@ -26,6 +26,7 @@ interface CarouselProps {
     transitionDuration?: number // 切换动画持续时间
     autoplayInterval?: number // 自动切换间隔时间
     onChange?: (current: number, prev: number | null) => void
+    dots?: boolean | 'line' | 'round'
     arrow?: boolean | 'hover'
     arrowsDisabled?: {
         left?: boolean
@@ -41,7 +42,7 @@ const Carousel: React.FC<CarouselProps> = (props) => {
     const {
         children, className,
         autoPlay, autoplayInterval, transitionDuration,
-        arrow, arrowsDisabled,
+        arrow, arrowsDisabled, dots,
         onChange, renderPrevArrow, renderNextArrow
     } = props
 
@@ -141,15 +142,6 @@ const Carousel: React.FC<CarouselProps> = (props) => {
 
     }
 
-    useEffect(() => {
-
-        const isSilent = prevIndex !== undefined ? (prevIndex > (props.children as any).length - 1 || prevIndex < 0) : false
-        if (prevIndex !== currentIndex) {
-            translate(currentIndex, isSilent)
-        }
-    }, [currentIndex])
-
-
     const getChildren = (children?: React.ReactNode) => {
         const length = Children.count(children)
 
@@ -173,6 +165,18 @@ const Carousel: React.FC<CarouselProps> = (props) => {
         return cloneChildren
     }
 
+    const isDotsActive = (currentIndex: number, index: number, length: number) => {
+        return (index === currentIndex || (index === length - 1 && currentIndex < 0) || (currentIndex > length - 1 && index === 0))
+    }
+
+    useEffect(() => {
+
+        const isSilent = prevIndex !== undefined ? (prevIndex > (props.children as any).length - 1 || prevIndex < 0) : false
+        if (prevIndex !== currentIndex) {
+            translate(currentIndex, isSilent)
+        }
+    }, [currentIndex])
+
     useEffect(() => {
         init()
         return clearAutoPlay
@@ -184,6 +188,7 @@ const Carousel: React.FC<CarouselProps> = (props) => {
         [sc('hover-show-arrow')]: arrow === 'hover'
     })
 
+    const dotsType = dots === 'round' ? 'round' : 'line';
 
     return (
         <div ref={swiperRef} className={classString}>
@@ -201,6 +206,15 @@ const Carousel: React.FC<CarouselProps> = (props) => {
                     })
                 }
             </div>
+            <ul className={classNames(sc('dots'), sc(`dots-${dotsType}`))}>
+                {
+                    Children.map(children, (item, index) => {
+                        return <li key={index} className={classNames(sc('dots-item'), {
+                            [sc('dots-item-active')]: isDotsActive(currentIndex, index, (children as any).length),
+                        })} onClick={() => swipeTo(index)}/>
+                    })
+                }
+            </ul>
         </div>
     )
 }
@@ -226,9 +240,10 @@ const defaultNextArrow: CarouselProps['renderNextArrow'] = (onNext, disabled) =>
 }
 
 Carousel.defaultProps = {
-    transitionDuration: 300,
+    transitionDuration: 100,
     autoPlay: false,
-    autoplayInterval: 1500,
+    autoplayInterval: 1000,
+    dots: 'line',
     arrow: 'hover',
     arrowsDisabled: {
         left: true,
