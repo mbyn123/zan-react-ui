@@ -1,0 +1,80 @@
+@mixin pointer-active {
+  color: $primary;
+  transform-origin: center center;
+  height: 16px;
+  width: 16px;
+  cursor: pointer;
+  &::after {
+    border: 6px solid $primary;
+    opacity: 0.15;
+    width: 16px;
+    height: 16px;
+    content: '';
+    display: inline-block;
+    border-radius: 50%;
+    position: absolute;
+    left: -8px;
+    top: -8px;
+  }
+}
+
+.zan-slider {
+  display: flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 8px 7px;
+  border: 1px solid red;
+
+  &-main {
+    //border: 1px solid;
+    flex: 1;
+    height: 14px;
+    cursor: pointer;
+    position: relative;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.05);
+    background-clip: content-box;
+    box-sizing: border-box;
+    user-select: none;
+  }
+
+  &-track {
+    position: absolute;
+    height: 4px;
+    background-color: $primary;
+    border-radius: 8px;
+    //width: 20%;
+  }
+
+  &-tooltip {
+    position: absolute;
+    top: 50%;
+    //left: 20%;
+    transform: translate(-50%, -50%);
+  }
+
+  &-point {
+    box-sizing: border-box;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid $primary;
+    background-color: #fff;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    transition: border-color 0.3s ease, height 0.1s linear, width 0.1s linear,
+    transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+
+    &:hover {
+      width: 16px;
+      height: 16px;
+    }
+
+    &:active {
+      @include pointer-active;
+    }
+  }
+}

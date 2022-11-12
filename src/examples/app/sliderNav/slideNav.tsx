@@ -40,6 +40,9 @@ const SlideNav = () => {
                 <li className='menu-item'>
                     <NavLink to='/carousel'>Carousel 轮播</NavLink>
                 </li>
+                <li className='menu-item'>
+                    <NavLink to='/slider'>Slider 滑动条</NavLink>
+                </li>
             </ul>
         </div>
     )
