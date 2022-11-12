@@ -23,7 +23,7 @@
   align-items: center;
   min-height: 30px;
   padding: 8px 7px;
-  border: 1px solid red;
+  //border: 1px solid red;
 
   &-main {
     //border: 1px solid;
@@ -45,14 +45,42 @@
     height: 4px;
     background-color: $primary;
     border-radius: 8px;
-    //width: 20%;
   }
 
   &-tooltip {
     position: absolute;
     top: 50%;
-    //left: 20%;
     transform: translate(-50%, -50%);
+    z-index: 1;
+    &-content {
+      position: absolute;
+      top: -48px;
+      padding: 8px 10px;
+      border-radius: 2px;
+      line-height: 14px;
+      z-index: 2;
+      white-space: nowrap;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 32px;
+      box-sizing: border-box;
+      //display: none;
+      background-color: #333333;
+      color: #fff;
+      font-size: 14px;
+
+    }
+    &:after{
+      content: '';
+      transform: translate(-50%, 50%) rotate(45deg);
+      width: 8px;
+      height: 8px;
+      top: -24px;
+      position: absolute;
+      left: 50%;
+      //display: none;
+      background-color: #333333;
+    }
   }
 
   &-point {
