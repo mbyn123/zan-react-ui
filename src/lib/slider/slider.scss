@@ -64,7 +64,7 @@
       transform: translateX(-50%);
       height: 32px;
       box-sizing: border-box;
-      //display: none;
+      display: none;
       background-color: #333333;
       color: #fff;
       font-size: 14px;
@@ -78,9 +78,24 @@
       top: -24px;
       position: absolute;
       left: 50%;
-      //display: none;
+      display: none;
       background-color: #333333;
     }
+    $tooltip: &;
+    &-active,&:hover{
+      #{$tooltip}-content{
+        display: block;
+      }
+      &:after{
+        display: block;
+      }
+    }
+    &-active{
+      .zan-slider-point{
+        @include pointer-active;
+      }
+    }
+
   }
 
   &-point {
@@ -103,6 +118,27 @@
 
     &:active {
       @include pointer-active;
+    }
+  }
+
+  &-mark{
+    position: absolute;
+    padding-top: 12px;
+    transform: translateX(-50%);
+    cursor: inherit;
+  }
+
+  &-dots{
+    position: absolute;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    margin-top: -2px;
+    border-radius: 50%;
+    border: 1px solid #e0e0e0;
+    background-color: #FFFFFF;
+    &-active{
+      border: 1px solid $primary;
     }
   }
 }

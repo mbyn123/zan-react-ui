@@ -30,7 +30,8 @@
       }
       .active{
         color: $primary;
-        background: lighten($primary,50%);
+        //background: lighten($primary,50%);
+        background-color: #f5f7fa;
       }
     }
   }

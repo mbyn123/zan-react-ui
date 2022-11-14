@@ -1,34 +1,19 @@
-import React, {useRef} from "react"
-import Point from "@lib/slider/point";
+import React, {useRef, useState} from "react"
 import {scopedClassMaker} from "@/utils/classes";
+import {getDecimal, getPosition, getPotentialValues, getValue, normalizeToPotentialValue, withinRange} from "@lib/slider/comm";
 import './slider.scss'
+import Point from "./point";
+import Marks from './marks'
+import Dots from "./dots";
 
 export const sc = scopedClassMaker('zan-slider')
-
-const getPosition = (value: number, min: number, max: number) => {
-    const num = ((value - min) * 100) / (max - min)
-    return `${num}%`
-}
-
-const getValue = (ratio: number, min: number, max: number) => {
-    return min + (max - min) * ratio
-}
-
-const withinRange = (value: number, min: number, max: number) => {
-    if (value < min) return min
-    if (value > max) return max
-    return value
-}
-
-const getDecimal = (step: number | string) => {
-    const fixed = String(step).split('.')[1];
-    return fixed ? fixed.length : 0;
-};
 
 interface sliderCommonProps {
     min?: number
     max?: number
     step?: number
+    dots?: boolean
+    marks?: Record<number, React.ReactNode>
 }
 
 interface sliderSingleProps extends sliderCommonProps {
@@ -39,11 +24,13 @@ interface sliderSingleProps extends sliderCommonProps {
 type sliderProps = sliderSingleProps
 
 const Slider: React.FC<sliderProps> = (props) => {
-    const {min = 0, max = 100, value, step = 1, onChange} = props
+    const {min = 0, max = 100, value, step = 1, marks, dots, onChange} = props
 
     const decimal = getDecimal(step)
+    const potentialValues = getPotentialValues(marks)
     const containerRef = useRef<HTMLDivElement | null>(null)
     const isMouseDown = useRef(false)
+    const [active, setActive] = useState<string | null>(null)
 
     // 计算鼠标点击位置
     const getValueFromEvent = (e: React.MouseEvent) => {
@@ -57,6 +44,7 @@ const Slider: React.FC<sliderProps> = (props) => {
         isMouseDown.current = true
         const position = getValueFromEvent(e)
         const nextValue = withinRange(position, min, max)
+        setActive(() => 'point-single')
         onChangeCallBack(nextValue)
     }
 
@@ -64,20 +52,26 @@ const Slider: React.FC<sliderProps> = (props) => {
         if (!isMouseDown.current) return
         const position = getValueFromEvent(e)
         const nextValue = withinRange(position, min, max)
+        setActive(() => 'point-single')
         onChangeCallBack(nextValue)
-    }
-
-    const onChangeCallBack = (value:number)=>{
-        const nextValue = Number(value.toFixed(decimal))
-        onChange && onChange(nextValue)
     }
 
     const mouseUp = () => {
         isMouseDown.current = false
+        setActive(() => null)
     }
 
-    const getComputedProps = () => {
+    const onChangeCallBack = (value: number) => {
+        let nextValue = Number(value.toFixed(decimal))
+        if (dots) {
+            nextValue = normalizeToPotentialValue(potentialValues, nextValue)
+        }
+        console.log(nextValue);
+        onChange && onChange(nextValue)
+    }
 
+
+    const getComputedProps = () => {
         const position = getPosition(value, min, max)
         return {
             props: {
@@ -96,7 +90,15 @@ const Slider: React.FC<sliderProps> = (props) => {
         <div className={sc('')} onMouseMove={mouseMove} onMouseUp={mouseUp} onMouseLeave={mouseUp}>
             <div className={sc('main')} ref={containerRef} onMouseDown={mouseDown}>
                 <div className={sc('track')} style={computed.trackStyle}/>
-                <Point value={value} position={computed.props.position}/>
+                <Point value={value} position={computed.props.position} active={active === 'point-single'}/>
+                {
+                    marks ? (
+                        <>
+                            <Marks min={min} max={max} marks={marks} potentialValues={potentialValues}/>
+                            {dots ? <Dots activeLeft={0} activeRight={value} min={min} max={max} potentialValues={potentialValues}/> : null}
+                        </>
+                    ) : null
+                }
             </div>
         </div>
     )

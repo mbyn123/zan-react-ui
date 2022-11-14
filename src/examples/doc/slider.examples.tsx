@@ -9,9 +9,20 @@ export default function (){
         setValue(value)
     }
 
+
+    const marks = {
+        0: '0°C',
+        10: '10°C',
+        20: '20°C',
+        40: '40°C',
+        50: '50°C',
+        100: '100°C'
+    };
+
+
     return (
         <div>
-            <Slider  max={2} min={1} step={0.1} value={value} onChange={onChange}/>
+            <Slider dots marks={marks}  step={0.1} value={value} onChange={onChange}/>
         </div>
     )
 }
