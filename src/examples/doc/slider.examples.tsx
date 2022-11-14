@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 import Slider from "@lib/slider/slider";
 
-export default function (){
+export default function () {
 
-    const [value,setValue] = useState(1.3)
+    const [value, setValue] = useState<[number, number]>([10, 50])
 
-    const onChange = (value:number)=>{
+    const onChange = (value: [number, number]) => {
         setValue(value)
     }
 
@@ -22,7 +22,7 @@ export default function (){
 
     return (
         <div>
-            <Slider dots marks={marks}  step={0.1} value={value} onChange={onChange}/>
+            <Slider range dots marks={marks} step={0.1} value={value} onChange={onChange}/>
         </div>
     )
 }

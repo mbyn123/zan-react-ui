@@ -69,3 +69,12 @@ export function normalizeToPotentialValue(potentialValues: number[], value: numb
         }
     }
 }
+
+export function isLeftValue(nextValue: number, value: [number, number]) {
+    if (nextValue > value[1]) {
+        return false;
+    }
+    return nextValue <= value[0] ||
+        Math.abs(value[0] - nextValue) <= Math.abs(value[1] - nextValue);
+
+}
