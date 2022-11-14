@@ -11,6 +11,7 @@ import Notify from "@doc/notify.examples";
 import Drawer from "@doc/drawer.examples";
 import Carousel from "@doc/carousel.examples"
 import Slider from "@doc/slider.examples";
+import Loading from "@doc/loading.examples"
 
 const routes: RouteObject[] = [
     {
@@ -56,6 +57,10 @@ const routes: RouteObject[] = [
     {
         path: '/slider',
         element: <Slider/>
+    },
+    {
+        path: '/loading',
+        element: <Loading/>
     },
     {
         path: '/',

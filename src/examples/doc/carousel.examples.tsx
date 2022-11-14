@@ -1,6 +1,6 @@
 import React from "react";
 import Carousel from "@lib/carousel/carousel";
-import './styles/carousel.scss'
+import './styles/carousel.examples.scss'
 
 export default function () {
 

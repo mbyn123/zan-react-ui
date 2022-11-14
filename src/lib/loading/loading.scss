@@ -1,0 +1,55 @@
+.zan-loading-block {
+  position: relative;
+
+  .zan-loading-mask {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, .5);
+
+  }
+
+}
+
+.zan-loading-fullscreen{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1100;
+  .zan-loading-mask {
+    background: rgba(0,0,0,.5);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &.zan-loading-show-background .zan-loading-icon-and-text {
+    padding: 32px;
+    border-radius: 4px;
+    background: #FFFFFF;
+  }
+}
+
+.zan-loading-icon-and-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: $primary;
+}
+.zan-loading-icon{
+  cursor: inherit;
+}
+.zan-loading-icon-text{
+  font-size: 14px;
+  padding-top: 8px;
+}
