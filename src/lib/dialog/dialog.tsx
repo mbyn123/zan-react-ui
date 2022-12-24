@@ -25,7 +25,7 @@ interface DialogProps {
 const sc = scopedClassMaker('zan-dialog')
 
 
-const Dialog: React.FC<DialogProps> = (props) => {
+const Dialog = (props:DialogProps) => {
     const {children, visible, maskClosable, closeBtn, title, footer, className, style, mask, onConfirm, onClose} = props
 
     const clickClose = () => {
@@ -75,7 +75,7 @@ Dialog.defaultProps = {
     mask: true
 }
 
-export default Dialog
+
 
 interface OpenDialogProps {
     title: ReactNode
@@ -117,4 +117,7 @@ const OpenDialog = (props: OpenDialogProps) => {
     }).catch(err => err)
 }
 
-export {OpenDialog}
+Dialog.OpenDialog = OpenDialog
+
+export default Dialog
+

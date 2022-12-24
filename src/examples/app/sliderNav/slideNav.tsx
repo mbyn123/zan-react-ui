@@ -1,8 +1,10 @@
-import React from "react";
+import React,{useEffect} from "react";
 import {NavLink} from 'react-router-dom'
 import './sliderNav.scss'
+import { useLocation } from "react-router";
 
 const SlideNav = () => {
+
     return (
         <div className='slider-nav-wrapper'>
             <div className="title">使用</div>
@@ -42,9 +44,6 @@ const SlideNav = () => {
                 </li>
                 <li className='menu-item'>
                     <NavLink to='/slider'>Slider 滑动条</NavLink>
-                </li>
-                <li className='menu-item'>
-                    <NavLink to='/loading'>Loading 加载</NavLink>
                 </li>
             </ul>
         </div>

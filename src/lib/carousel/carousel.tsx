@@ -1,4 +1,4 @@
-import React, {Children, cloneElement, useEffect, useRef, useState} from "react";
+import React, {Children, cloneElement, forwardRef, useEffect, useImperativeHandle, useRef, useState} from "react";
 import classNames from "classnames";
 import {scopedClassMaker} from "@/utils/classes";
 import './carousel.scss'
@@ -36,9 +36,15 @@ interface CarouselProps {
     renderNextArrow?: (onNext: () => void, disabled?: boolean) => React.ReactNode
 }
 
+export interface CarouselRefType {
+    next: () => void
+    prev: () => void
+    swipeTo: (value: number) => void
+}
+
 const sc = scopedClassMaker('zan-carousel')
 
-const Carousel: React.FC<CarouselProps> = (props) => {
+const Carousel = forwardRef<CarouselRefType, CarouselProps>((props, ref) => {
     const {
         children, className,
         autoPlay, autoplayInterval, transitionDuration,
@@ -97,6 +103,12 @@ const Carousel: React.FC<CarouselProps> = (props) => {
         isSwiping.current = true
         setCurrentIndex(() => index)
     }
+
+    useImperativeHandle(ref, () => ({
+        next,
+        prev,
+        swipeTo
+    }));
 
     const getPrevIndex = (index: number | undefined) => {
         const length = (children as any).length
@@ -217,7 +229,7 @@ const Carousel: React.FC<CarouselProps> = (props) => {
             </ul>
         </div>
     )
-}
+})
 
 const defaultPrevArrow: CarouselProps['renderPrevArrow'] = (onPerv, disabled) => {
     return (
@@ -240,13 +252,13 @@ const defaultNextArrow: CarouselProps['renderNextArrow'] = (onNext, disabled) =>
 }
 
 Carousel.defaultProps = {
-    transitionDuration: 100,
-    autoPlay: false,
-    autoplayInterval: 1000,
+    transitionDuration: 300,
+    autoPlay: true,
+    autoplayInterval: 3000,
     dots: 'line',
     arrow: 'hover',
     arrowsDisabled: {
-        left: true,
+        left: false,
         right: false
     },
     renderPrevArrow: defaultPrevArrow,

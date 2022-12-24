@@ -9,6 +9,7 @@ interface DrawerBackdropProps {
     onClose?: () => void
 }
 
+// 遮罩层
 const DrawerBackdrop: React.FC<DrawerBackdropProps> = (props) => {
     const {visible, mask, maskClosable, onClose} = props
     const onClickMask = () => {

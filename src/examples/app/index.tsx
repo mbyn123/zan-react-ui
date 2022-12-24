@@ -1,11 +1,19 @@
-import React from "react";
+import React, {useEffect, useRef} from "react";
 import {useRoutes} from 'react-router-dom'
 import './index.scss'
 import SlideNav from "./sliderNav/slideNav";
 import routes from "./routes";
+import {useLocation} from 'react-router'
 
 export default function App() {
     const element = useRoutes(routes)
+    const path = useLocation()
+    const contentRef = useRef<HTMLDivElement>(null)
+
+    useEffect(()=>{
+        contentRef.current?.scrollTo(0,0)
+    },[path])
+
     return (
         <div className="page-wrapper">
             <div className="page-header">
@@ -24,11 +32,11 @@ export default function App() {
                     </div>
                 </div>
             </div>
-            <div className="page-content">
+            <div className="page-content" >
                 <div className="nav">
                     <SlideNav/>
                 </div>
-                <div className="content">
+                <div className="content" ref={contentRef}>
                     {element}
                 </div>
             </div>

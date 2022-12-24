@@ -74,6 +74,6 @@ function Radio(props: RadioProps<Value>) {
     )
 }
 
-export {RadioGroup}
 
+Radio.RadioGroup = RadioGroup
 export default Radio

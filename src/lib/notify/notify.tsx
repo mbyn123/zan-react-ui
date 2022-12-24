@@ -10,6 +10,7 @@ const createContainerId = () => {
     return ++index
 }
 
+// 创建挂载节点
 const createNotifyContainerNode = () => {
     let notifyContainerNode = document.querySelector<HTMLElement>('.zan-notify-container')
     if (!notifyContainerNode) {
@@ -80,6 +81,7 @@ export const warn = (text: ReactNode, duration?: number, callback?: () => void) 
     return show(text, duration, 'warn', callback)
 }
 
+// 清除通知
 export const clear = (id?: number) => {
     if (id) {
         clearNotify(id)

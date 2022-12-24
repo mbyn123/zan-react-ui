@@ -11,6 +11,7 @@ interface SliderDotsProps {
     potentialValues: number[]
 }
 
+//
 const SliderDots: React.FC<SliderDotsProps> = (props) => {
     const {potentialValues, min, max, activeLeft, activeRight} = props
     return (

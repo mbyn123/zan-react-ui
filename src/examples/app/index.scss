@@ -53,7 +53,7 @@
   }
 
   .page-content{
-    flex: 1;
+    height: calc(100% - 60px);
     display: flex;
     @media (min-width: 1440px){
       width: 1440px;
@@ -67,7 +67,7 @@
     }
     .content{
       flex: 1;
-      height: 100%;
+      //height: calc(100% - 60px);
       overflow-y: auto;
       box-sizing: border-box;
       padding: 30px;

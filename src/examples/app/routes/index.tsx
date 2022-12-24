@@ -1,17 +1,17 @@
 import React from "react";
 import {Navigate, RouteObject} from 'react-router-dom';
 import Install from "@doc/install.examples"
-import Button from '@doc/button.examples'
-import Icon from "@doc/icon.examples"
-import Dialog from "@doc/dialog.examples";
-import CheckBox from "@doc/checkBox.examples";
-import Radio from "@doc/radio.examples";
-import Switch from "@doc/switch.examples"
-import Notify from "@doc/notify.examples";
-import Drawer from "@doc/drawer.examples";
-import Carousel from "@doc/carousel.examples"
-import Slider from "@doc/slider.examples";
-import Loading from "@doc/loading.examples"
+import Button from '@doc/button/button.examples'
+import Icon from "@doc/icon/icon.examples"
+import Dialog from "@doc/dialog/dialog.examples";
+import CheckBox from "@doc/checkBox/checkBox.examples";
+import Radio from "@doc/radio/radio.examples";
+import Switch from "@doc/switch/switch.examples"
+import Notify from "@doc/notify/notify.examples";
+import Drawer from "@doc/drawer/drawer.examples";
+import Carousel from "@doc/carousel/carousel.examples"
+import Slider from "@doc/slider/slider.examples";
+import Loading from "@doc/loading/loading.examples"
 
 const routes: RouteObject[] = [
     {
