@@ -5,10 +5,10 @@ const devMode = process.env.NODE_ENV !== 'production';
 
 
 module.exports = {
-    entry: './src/lib/index.tsx',
+    entry: './src/lib/index.ts',
     output: {
         path: path.resolve(__dirname, 'dist/lib'),
-        filename: '[name].[contenthash].js', // 打包文件名称
+        filename: '[name].js', // 打包文件名称
         library: 'Gu',
         libraryTarget: 'umd'
     },
@@ -25,14 +25,17 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(ts|tsx|jsx)$/,
+                // test: /\.(ts|tsx|jsx)$/,
+                // exclude: /node-modules/,
+                // use: [
+                //     {
+                //         loader: "babel-loader",
+                //         options: {plugins: devMode ? [require.resolve('react-refresh/babel')] : []}
+                //     }
+                // ]
+                test:/\.tsx?$/,
+                use:['ts-loader'],
                 exclude: /node-modules/,
-                use: [
-                    {
-                        loader: "babel-loader",
-                        options: {plugins: devMode ? [require.resolve('react-refresh/babel')] : []}
-                    }
-                ]
             }, {
                 test: /\.css$/,
                 use: [devMode ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
@@ -70,18 +73,6 @@ module.exports = {
             {
                 test: /\.md$/,
                 loader: 'raw-loader',
-                // use:[
-                //     {
-                //         loader: "html-loader",
-                //     },
-                //     {
-                //         loader: "markdown-loader",
-                //         options: {
-                //             // Pass options to marked
-                //             // See https://marked.js.org/using_advanced#options
-                //         },
-                //     },
-                // ]
             },
         ]
     },

@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "@lib/button/button";
+import {Button} from "@lib/index";
 import Demo from "@/components/demo/demo";
 import MdBasic from "@/components/demo/mdBasic";
 import handbook from './handbook.md'

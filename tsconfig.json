@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "declaration": true,
+    "outDir": "dist",
     "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": false,
@@ -12,7 +14,7 @@
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
+    "noEmit": false,
     "jsx": "react", // react18这里也可以改成react-jsx
     "baseUrl": ".",
     "paths": {
