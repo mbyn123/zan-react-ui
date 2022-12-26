@@ -1,6 +1,6 @@
 import React, {memo} from "react";
 import { getLeft } from "./comm";
-import {sc} from './slider'
+import {scopedClassMaker} from "@/utils/classes";
 
 interface SliderMarksProps {
     marks: Record<number, React.ReactNode>
@@ -8,6 +8,7 @@ interface SliderMarksProps {
     max: number
     potentialValues: number[]
 }
+const sc = scopedClassMaker('zan-slider')
 
 const SliderMarks: React.FC<SliderMarksProps> = memo((props) => {
     const {marks, max, min, potentialValues} = props

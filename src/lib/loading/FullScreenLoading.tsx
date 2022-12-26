@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {sc} from './blockLoading'
 import classNames from "classnames";
 import LoadingMask from "@lib/loading/loadingMask";
+import {scopedClassMaker} from "@/utils/classes";
 
 interface FullScreenLoadingProps {
     loading?: boolean
@@ -10,6 +10,9 @@ interface FullScreenLoadingProps {
     iconText?: string
     showBackground?: boolean
 }
+
+const sc = scopedClassMaker('zan-loading')
+
 
 const FullScreenLoading: React.FC<FullScreenLoadingProps> = (props) => {
     const {loading, icon, iconText, showBackground} = props

@@ -48,7 +48,7 @@ type computedProps = | {
 
 type sliderProps = (sliderSingleProps | sliderRangeProps)
 
-export const sc = scopedClassMaker('zan-slider')
+const sc = scopedClassMaker('zan-slider')
 
 const Slider: React.FC<sliderProps> = (props) => {
     const {min = 0, max = 100, step = 1, marks, dots, claasName} = props

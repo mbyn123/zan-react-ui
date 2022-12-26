@@ -1,6 +1,7 @@
 import React, {ReactNode} from "react";
 import {createRoot, Root} from "react-dom/client";
 import NotifyContent from "@lib/notify/notifyContent";
+import './notify.scss'
 
 let index = 0
 

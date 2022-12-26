@@ -11,7 +11,7 @@ interface BlockLoadingProps {
     iconText?: string
 }
 
-export const sc = scopedClassMaker('zan-loading')
+ const sc = scopedClassMaker('zan-loading')
 
 const BlockLoading: React.FC<BlockLoadingProps> = (props) => {
     const {children, loading, icon, iconText} = props

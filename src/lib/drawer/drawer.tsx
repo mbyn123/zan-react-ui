@@ -4,6 +4,7 @@ import {scopedClassMaker} from "@/utils/classes";
 import DrawerBackdrop from "./drawerBackdrop";
 import DrawerContent from "./drawerContent";
 import {useDrawerExiting} from "./useDrawerExiting";
+import './drawer.scss'
 
 interface DrawerComponentProps {
     visible: boolean
@@ -28,7 +29,6 @@ interface DrawerLengthways extends DrawerComponentProps {
 
 type DrawerProps = DrawerCrosswise | DrawerLengthways
 
-export const sc = scopedClassMaker('zan-drawer')
 
 const Drawer: React.FC<DrawerProps> = (props) => {
 

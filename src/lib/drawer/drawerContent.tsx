@@ -1,8 +1,8 @@
 import React, {useMemo} from "react";
 import {CSSTransition} from "react-transition-group";
-import {sc} from "@lib/drawer/drawer";
 import Icon from "@lib/icon/icon";
 import classNames from "classnames";
+import {scopedClassMaker} from "@/utils/classes";
 
 interface DrawerComponent {
     visible: boolean
@@ -27,6 +27,8 @@ interface DrawerContentLengthways extends DrawerComponent {
 }
 
 type DrawerContentProps = DrawerContentCrosswise | DrawerContentLengthways
+
+const sc = scopedClassMaker('zan-drawer')
 
 const placementObj = {
     right: {height: '100%', right: 0, top: 0},

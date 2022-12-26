@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import BlockLoading from "@lib/loading/blockLoading";
+import BlockLoading from "@lib/loading/BlockLoading";
 import FullScreenLoading from "@lib/loading/FullScreenLoading";
 import Button from "@lib/button/button";
 import Switch from "@lib/switch/switch";

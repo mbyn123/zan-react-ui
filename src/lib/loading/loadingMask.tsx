@@ -1,12 +1,15 @@
 import React from "react";
-import {sc} from './blockLoading'
 import classNames from "classnames";
 import Icon from "@lib/icon/icon";
+import {scopedClassMaker} from "@/utils/classes";
 
 interface LoadingMaskProps {
     icon?: React.ReactNode
     iconText?: string
 }
+
+const sc = scopedClassMaker('zan-loading')
+
 
 const LoadingMask: React.FC<LoadingMaskProps> = (props) => {
     const {icon, iconText} = props

@@ -1,7 +1,7 @@
 import React from "react";
-import {sc} from "@lib/slider/slider";
 import {getLeft} from "@lib/slider/comm";
 import classNames from "classnames";
+import {scopedClassMaker} from "@/utils/classes";
 
 interface SliderDotsProps {
     min: number
@@ -10,6 +10,7 @@ interface SliderDotsProps {
     activeRight: number
     potentialValues: number[]
 }
+const sc = scopedClassMaker('zan-slider')
 
 //
 const SliderDots: React.FC<SliderDotsProps> = (props) => {

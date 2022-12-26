@@ -1,6 +1,6 @@
 import React from "react";
 import {CSSTransition} from 'react-transition-group'
-import {sc} from "@lib/drawer/drawer";
+import {scopedClassMaker} from "@/utils/classes";
 
 interface DrawerBackdropProps {
     visible: boolean
@@ -8,6 +8,8 @@ interface DrawerBackdropProps {
     maskClosable?: boolean
     onClose?: () => void
 }
+
+const sc = scopedClassMaker('zan-drawer')
 
 // 遮罩层
 const DrawerBackdrop: React.FC<DrawerBackdropProps> = (props) => {

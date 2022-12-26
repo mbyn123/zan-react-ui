@@ -1,6 +1,6 @@
 import React from "react";
-import {sc} from './slider'
 import classNames from "classnames";
+import {scopedClassMaker} from "@/utils/classes";
 
 interface pointProps {
     position: string
@@ -9,6 +9,7 @@ interface pointProps {
 }
 
 
+const sc = scopedClassMaker('zan-slider')
 
 const Point: React.FC<pointProps> = (props) => {
     const {position, value, active} = props
