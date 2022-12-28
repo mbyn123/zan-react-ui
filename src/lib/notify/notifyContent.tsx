@@ -22,11 +22,26 @@ const NotifyContent: React.FC<NotifyContentProps> = (props) => {
         close && close()
     }
 
+    const IconDemo = ({name}:{name:string})=> <Icon name={name} className={sc('content-icon')}/>
+
     return ReactDOM.createPortal(
         <CSSTransition classNames='notify' timeout={800} appear unmountOnExit in={isIn} onExited={onExited}>
             <div className={sc('')}>
                 <div className={`${sc('content',)} ${sc(`content-${type}`)}`}>
-                    <Icon name='setting' className={sc('content-icon')}/>
+                    {
+                        type === 'info' && <IconDemo name='info'/>
+                    }
+                    {
+                        type === 'success' &&  <IconDemo name='gouxuankuanglig'/>
+                    }
+                    {
+                        type === 'error' && <IconDemo name='guanbi'/>
+                    }
+                    {
+                        type === 'warn' &&  <IconDemo name='warning_amber'/>
+                    }
+
+
                     <div>{text}</div>
                 </div>
             </div>

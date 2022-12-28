@@ -5,6 +5,7 @@ const baseConfig = require('./webpack.config')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin'); // 错误提示
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const WebpackBar = require('webpackbar')
 
 module.exports = merge(baseConfig,{
     mode:'development',
@@ -20,6 +21,7 @@ module.exports = merge(baseConfig,{
         historyApiFallback: true, // 防止 history 路由刷新后空白
     },
     plugins:[
+        new WebpackBar(),
         new FriendlyErrorsWebpackPlugin(),
         new ReactRefreshWebpackPlugin(), // 添加热更新插件
         new HtmlWebpackPlugin({

@@ -1,6 +1,6 @@
 ```tsx
 import React, {useState} from "react";
-import { CheckBox } from 'zent';
+import { CheckBox } from 'zan-react-ui';
 
 const CheckboxGroup = CheckBox.CheckboxGroup
 

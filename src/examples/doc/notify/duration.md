@@ -1,5 +1,5 @@
 ```tsx
-import { Notify } from 'zent';
+import { Notify } from 'zan-react-ui';
 
 function App(){
 

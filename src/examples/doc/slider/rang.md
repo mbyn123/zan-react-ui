@@ -1,6 +1,6 @@
 ```tsx
 import React, {useState} from "react";
-import { Slider } from 'zent';
+import { Slider } from 'zan-react-ui';
 
 const marks = {
     0: '0°C',

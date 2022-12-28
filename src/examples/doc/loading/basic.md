@@ -1,6 +1,6 @@
 ```tsx
 import React, {useState} from "react";
-import { BlockLoading } from 'zent';
+import { BlockLoading } from 'zan-react-ui';
 
 
 function App(){

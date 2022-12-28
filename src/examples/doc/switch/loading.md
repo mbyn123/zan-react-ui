@@ -1,5 +1,5 @@
 ```tsx
-import { Switch } from 'zent';
+import { Switch } from 'zan-react-ui';
 
 function App(){
     return  (

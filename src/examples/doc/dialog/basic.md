@@ -1,6 +1,6 @@
 ```tsx
 import React, {useState} from "react";
-import { Dialog } from 'zent';
+import { Dialog } from 'zan-react-ui';
 
 
 function App(){

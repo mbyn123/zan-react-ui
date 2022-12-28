@@ -1,7 +1,7 @@
 ```tsx
 import React, {useState} from "react";
-import { Radio } from 'zent';
-import {IRadioEvent} from "zent/lib/radio/radio";
+import { Radio } from 'zan-react-ui';
+import {IRadioEvent} from "zan-react-ui/lib/radio/radio";
 
 const RadioGroup = Radio.RadioGroup
 

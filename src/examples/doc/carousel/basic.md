@@ -1,6 +1,6 @@
 ```tsx
 import React, {useState} from "react";
-import { Carousel } from 'zent';
+import { Carousel } from 'zan-react-ui';
 
 
 function App(){

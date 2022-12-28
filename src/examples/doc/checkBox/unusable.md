@@ -1,5 +1,5 @@
 ```jsx
-import { CheckBox } from 'zent';
+import { CheckBox } from 'zan-react-ui';
 
 ReactDOM.render(
     <div>

@@ -68,7 +68,16 @@ module.exports = {
                 }
             }, {
                 test: /\.svg$/,
-                loader: "svg-sprite-loader"
+                use:[
+                    { loader: "svg-sprite-loader"},
+                    { loader: "svgo-loader", options: {
+                            plugins: [{
+                                name: 'removeAttrs',
+                                params: {attrs: 'fill'}
+                            }]
+                        }
+                    }
+                ]
             },
             {
                 test: /\.md$/,

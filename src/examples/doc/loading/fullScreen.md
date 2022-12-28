@@ -1,6 +1,6 @@
 ```tsx
 import React, {useState} from "react";
-import { FullScreenLoading } from 'zent';
+import { FullScreenLoading } from 'zan-react-ui';
 
 function App(){
     const [fullLoading, setFullLoading] = useState(false)

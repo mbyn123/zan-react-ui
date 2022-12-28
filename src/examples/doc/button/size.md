@@ -1,5 +1,5 @@
 ```jsx
-import { Button } from 'zent';
+import { Button } from 'zan-react-ui';
 
 ReactDOM.render(
 	<div>

@@ -1,7 +1,7 @@
 ```tsx
 import React, {useState} from "react";
-import { CheckBox } from 'zent';
-import {ICheckboxEvent} from "zent/lib/checkBox/checkBox";
+import { CheckBox } from 'zan-react-ui';
+import {ICheckboxEvent} from "zan-react-ui/lib/checkBox/checkBox";
 
 function App(){
     const [checked,setChecked] = useState(false)
