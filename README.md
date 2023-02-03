@@ -2,7 +2,7 @@
 
 是一套基于React开发的PC端组件库，项目使用 TypeScript进行开发，让开发人员可以在代码运行之前识别某些类型问题，提升了代码的可靠性。
 
-中文文档 https://mbyn123.github.io/zan-react-ui-docs/#/checkBox
+中文文档 https://mbyn123.github.io/zan-react-ui-docs/#/install
 
 ### 安装
 
