@@ -4,6 +4,7 @@ import './index.scss'
 import SlideNav from "./sliderNav/slideNav";
 import routes from "./routes";
 import {useLocation} from 'react-router'
+const logo = require('./logo.png')
 
 export default function App() {
     const element = useRoutes(routes)
@@ -20,7 +21,7 @@ export default function App() {
                 <div className="inner">
                     <div className="left">
                         <a href="#" className="logo">
-                            <img src="https://img.yzcdn.cn/public_files/2017/12/18/fd78cf6bb5d12e2a119d0576bedfd230.png"
+                            <img src={logo}
                                  alt="logo"/>
                             <span>Zan Design</span>
                         </a>

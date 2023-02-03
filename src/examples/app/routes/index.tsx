@@ -1,6 +1,6 @@
 import React from "react";
 import {Navigate, RouteObject} from 'react-router-dom';
-import Install from "@doc/install.examples"
+import Install from "@doc/install/install.examples"
 import Button from '@doc/button/button.examples'
 import Icon from "@doc/icon/icon.examples"
 import Dialog from "@doc/dialog/dialog.examples";
